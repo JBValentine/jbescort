@@ -328,9 +328,78 @@ def send_telegram(message: str) -> None:
             },
             timeout=10,
         )
-        print("📱 Telegram notification sent")
+        print("📱 Telegram message sent")
     except Exception as e:
         print(f"⚠️  Telegram failed: {e}")
+
+
+def build_card_caption(f: dict) -> str:
+    """Build formatted caption for a freelancer photo card."""
+    area  = f.get("area", "")
+    name  = f.get("name", "")
+    flag  = f.get("nationalityFlag", "")
+
+    height = f"{f['height']}cm" if f.get("height") else "—"
+    weight = f"{f['weight']}kg" if f.get("weight") else "—"
+    cup    = f.get("cup") or "—"
+
+    p_min  = f.get("priceMin", 0)
+    p_max  = f.get("priceMax", 0)
+    if p_min and p_max and p_min != p_max:
+        price = f"RM {p_min}–{p_max}"
+    elif p_min:
+        price = f"RM {p_min}"
+    else:
+        price = "价格面议"
+
+    svc_map = {"water": "💦 水类", "massage": "💆 按摩", "other": "✨ 其他"}
+    service = svc_map.get(f.get("serviceType", "other"), "✨ 其他")
+
+    fid  = f.get("id", "")
+    url  = f"https://jbescorts.org/freelancer/{fid}"
+    wa   = f.get("whatsapp", "")
+
+    lines = [
+        f"🏙 <b>【{area}】{name}</b> {flag}",
+        f"📏 {height}  ⚖️ {weight}  👙 {cup}",
+        f"💰 {price}  ·  {service}",
+    ]
+    if wa:
+        lines.append(f'📱 <a href="https://wa.me/{wa}">联系 WhatsApp</a>')
+    lines.append(f'🔗 <a href="{url}">查看详情</a>')
+    return "\n".join(lines)
+
+
+def send_telegram_card(f: dict) -> None:
+    """Send a photo card with caption; fall back to text if no photo."""
+    if not BOT_TOKEN or not CHAT_ID:
+        return
+    caption = build_card_caption(f)
+    photos  = f.get("photos", [])
+
+    sent = False
+    if photos:
+        photo_path = Path("public") / photos[0].lstrip("/")
+        if photo_path.exists():
+            try:
+                with open(photo_path, "rb") as img:
+                    r = requests.post(
+                        f"https://api.telegram.org/bot{BOT_TOKEN}/sendPhoto",
+                        data={"chat_id": CHAT_ID, "caption": caption, "parse_mode": "HTML"},
+                        files={"photo": img},
+                        timeout=30,
+                    )
+                if r.status_code == 200:
+                    sent = True
+                    print(f"  📸 Card sent: {f.get('name')}")
+            except Exception as e:
+                print(f"  ⚠️  Photo upload failed: {e}")
+
+    if not sent:
+        send_telegram(caption)
+        print(f"  📝 Text card sent: {f.get('name')}")
+
+    time.sleep(0.5)  # Telegram rate limit
 
 
 # ─── Main ────────────────────────────────────────────────────────────────────
@@ -411,18 +480,19 @@ def main():
     print(f"✅ Saved {len(final_list)} records → {DATA_FILE}")
 
     # Telegram notification
+    MAX_CARDS = 20   # cap per run to avoid flooding
     if new_names or deleted_tids:
         deleted_names = [
             existing[t]["name"] for t in list(deleted_tids)[:5] if t in existing
         ]
+        # 1. Summary message
         lines = [
             "🔄 <b>JBEscorts 自由身数据更新</b>",
             f"📅 {datetime.now().strftime('%Y-%m-%d %H:%M')}",
         ]
         if new_names:
-            preview = "、".join(new_names[:5])
-            suffix  = f"…等{len(new_names)}条" if len(new_names) > 5 else ""
-            lines.append(f"➕ 新增：{preview}{suffix}")
+            extra = f"（仅展示前{MAX_CARDS}条）" if len(new_names) > MAX_CARDS else ""
+            lines.append(f"➕ 新增 <b>{len(new_names)}</b> 条{extra}")
         if deleted_tids:
             preview = "、".join(deleted_names)
             suffix  = f"…等{len(deleted_tids)}条" if len(deleted_tids) > 5 else ""
@@ -430,6 +500,11 @@ def main():
         lines.append(f"📊 当前共 <b>{len(final_list)}</b> 条自由身资料")
         lines.append(f'🔗 <a href="https://jbescorts.org/freelance">查看完整列表</a>')
         send_telegram("\n".join(lines))
+
+        # 2. Send individual photo cards for new freelancers
+        new_cards = [updated[tid] for tid in list(new_tids)[:MAX_CARDS] if tid in updated]
+        for f_data in new_cards:
+            send_telegram_card(f_data)
     else:
         print("📭 No changes — skipping Telegram notification")
 
