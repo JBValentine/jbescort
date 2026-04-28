@@ -186,12 +186,13 @@ export default function Home() {
 }
 
 function FreelancerCard({ freelancer: f }: { freelancer: any }) {
-  const icon  = SERVICE_ICON[f.serviceType] || '🔮'
-  const label = SERVICE_LABEL[f.serviceType] || '其他'
-  const photo = f.photos?.[0]
-  const price = f.priceMin
+  const icon        = SERVICE_ICON[f.serviceType] || '🔮'
+  const label       = SERVICE_LABEL[f.serviceType] || '其他'
+  const photo       = f.photos?.[0]
+  const price       = f.priceMin
     ? `RM${f.priceMin}${f.priceMax !== f.priceMin ? `-${f.priceMax}` : ''}`
     : ''
+  const displayName = f.description?.match(/名字[：:]\s*\n?([^\n]+)/)?.[1]?.trim() || f.name
 
   return (
     <Link
@@ -229,7 +230,7 @@ function FreelancerCard({ freelancer: f }: { freelancer: any }) {
         <div className="flex items-center gap-1 mb-1">
           <span className="text-base">{f.nationalityFlag}</span>
           <span className="text-sm font-bold text-gray-900 truncate group-hover:text-[#0088cc] transition-colors">
-            {f.name}
+            {displayName}
           </span>
         </div>
         <div className="text-xs text-gray-400 truncate">

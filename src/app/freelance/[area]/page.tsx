@@ -77,6 +77,7 @@ export default function AreaFreelancePage({ params }: Props) {
                 ? `RM${f.priceMin}${f.priceMax !== f.priceMin ? `-${f.priceMax}` : ''}`
                 : ''
 
+              const displayName = f.description?.match(/名字[：:]\s*\n?([^\n]+)/)?.[1]?.trim() || f.name
               return (
                 <Link
                   key={f.id}
@@ -109,7 +110,7 @@ export default function AreaFreelancePage({ params }: Props) {
                     <div className="flex items-center gap-1 mb-0.5">
                       <span>{f.nationalityFlag}</span>
                       <span className="text-sm font-bold text-gray-900 truncate group-hover:text-[#0088cc]">
-                        {f.name}
+                        {displayName}
                       </span>
                     </div>
                     <div className="text-xs text-gray-400">

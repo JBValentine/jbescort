@@ -17,8 +17,9 @@ export function generateMetadata({ params }: Props): Metadata {
   const f    = data.freelancers?.find((x: any) => String(x.id) === params.id)
   if (!f) return {}
 
-  const title = `${f.name} — ${f.area} 自由身 | jbescorts.org`
-  const desc  = `${f.name} ${f.nationalityFlag} ${f.area}${f.height ? ` ${f.height}cm` : ''}${f.cup ? ` ${f.cup}` : ''}${f.priceMin ? ` RM${f.priceMin}-${f.priceMax}` : ''} — JB 自由身资料`
+  const displayName = f.description?.match(/名字[：:]\s*\n?([^\n]+)/)?.[1]?.trim() || f.name
+  const title = `${displayName} — ${f.area} 自由身 | jbescorts.org`
+  const desc  = `${displayName} ${f.nationalityFlag} ${f.area}${f.height ? ` ${f.height}cm` : ''}${f.cup ? ` ${f.cup}` : ''}${f.priceMin ? ` RM${f.priceMin}-${f.priceMax}` : ''} — JB 自由身资料`
 
   return {
     title,
@@ -46,8 +47,9 @@ export default function FreelancerPage({ params }: Props) {
   const price        = f.priceMin
     ? `RM${f.priceMin}${f.priceMax !== f.priceMin ? ` — RM${f.priceMax}` : ''}`
     : '价格询问'
+  const displayName = f.description?.match(/名字[：:]\s*\n?([^\n]+)/)?.[1]?.trim() || f.name
   const waLink = f.whatsapp
-    ? `https://wa.me/${f.whatsapp}?text=${encodeURIComponent(`你好，我从jbescorts.org看到你的资料（${f.name}），想了解更多。`)}`
+    ? `https://wa.me/${f.whatsapp}?text=${encodeURIComponent(`你好，我从jbescorts.org看到你的资料（${displayName}），想了解更多。`)}`
     : null
 
   // Other freelancers in same area
@@ -79,7 +81,7 @@ export default function FreelancerPage({ params }: Props) {
           <li>/</li>
           <li><Link href={`/freelance/${f.areaSlug}`} className="hover:text-[#0088cc]">{f.area}</Link></li>
           <li>/</li>
-          <li className="text-gray-900 font-medium">{f.name}</li>
+          <li className="text-gray-900 font-medium">{displayName}</li>
         </ol>
       </nav>
 
@@ -134,7 +136,7 @@ export default function FreelancerPage({ params }: Props) {
             <div>
               <div className="flex items-center gap-3 mb-1">
                 <span className="text-3xl">{f.nationalityFlag}</span>
-                <h1 className="text-2xl md:text-3xl font-extrabold text-gray-900">{f.name}</h1>
+                <h1 className="text-2xl md:text-3xl font-extrabold text-gray-900">{displayName}</h1>
               </div>
               <p className="text-gray-500 text-sm">
                 📍 {f.area} · {f.nationalityName} · {serviceIcon} {serviceLabel}
