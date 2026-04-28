@@ -4,7 +4,7 @@ name: Sync Freelancers
 # 也可以在 GitHub Actions 页面手动触发
 on:
   schedule:
-    - cron: '0 2 */2 * *'
+    - cron: '0 2 * * *'
   workflow_dispatch:
 
 jobs:
