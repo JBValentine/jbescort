@@ -206,7 +206,7 @@ export default function PlatformPage({ params }: Props) {
               <p className="text-sm font-bold text-gray-900 mb-2">获取实时防骗提醒</p>
               <p className="text-xs text-gray-500 mb-4">加入 Telegram 群组了解最新平台动态</p>
               <a
-                href="https://t.me/JBmnXS"
+                href="https://t.me/JBjinhaiwan"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-4 py-2 text-sm font-bold text-white bg-[#0088cc] rounded-lg hover:bg-[#0077b3] transition-colors"

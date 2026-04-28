@@ -13,7 +13,7 @@ type Site = {
 
 const tags = [
   { label: 'All 全部', value: 'all' },
-  { label: 'Featured 精选', value: 'Featured' },
+  { label: 'Featured 精�?, value: 'Featured' },
   { label: 'Hot 热门', value: 'Hot' },
   { label: 'Verified 认证', value: 'Verified' },
 ]
@@ -70,7 +70,7 @@ export default function CardGrid({ sites }: { sites: Site[] }) {
               </span>
             </div>
 
-            {/* 信息区 */}
+            {/* 信息�?*/}
             <div className="p-5">
               <h2 className="text-lg font-bold text-slate-900 group-hover:text-blue-600 transition-colors">
                 {site.nameEn}
