@@ -4,7 +4,7 @@ export function middleware(request: NextRequest) {
   const host = request.headers.get('host') || ''
   const proto = request.headers.get('x-forwarded-proto') || 'https'
 
-  // HTTP â†?HTTPS redirect (Cloudflare sends x-forwarded-proto)
+  // HTTP to HTTPS redirect (Cloudflare sends x-forwarded-proto)
   if (proto === 'http') {
     const url = new URL(request.url)
     url.protocol = 'https:'
@@ -12,7 +12,7 @@ export function middleware(request: NextRequest) {
     return NextResponse.redirect(url.toString(), 301)
   }
 
-  // www â†?non-www redirect
+  // www to non-www redirect
   if (host.startsWith('www.')) {
     const url = new URL(request.url)
     url.host = host.replace(/^www\./, '')
