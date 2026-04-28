@@ -116,11 +116,9 @@ export default function AreaPage({ params }: Props) {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {recommendedPlatforms.map((p) => (
-              <a
+              <Link
                 key={p.name}
-                href={p.url}
-                target="_blank"
-                rel="noopener noreferrer"
+                href={`/platform/${p.slug}`}
                 className="bg-white rounded-xl border border-gray-200 p-5 hover:shadow-lg hover:-translate-y-0.5 transition-all"
               >
                 <div className="flex items-center gap-3 mb-3">
@@ -134,7 +132,7 @@ export default function AreaPage({ params }: Props) {
                 </div>
                 <p className="text-gray-500 text-sm mb-1">{p.descEn}</p>
                 <p className="text-gray-400 text-xs">{p.descZh}</p>
-              </a>
+              </Link>
             ))}
           </div>
         </section>
@@ -184,6 +182,17 @@ export default function AreaPage({ params }: Props) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'BreadcrumbList',
+          itemListElement: [
+            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://jbescorts.org' },
+            { '@type': 'ListItem', position: 2, name: `${area.name} Escort`, item: `https://jbescorts.org/${area.slug}` },
+          ],
+        }) }}
       />
     </main>
   )

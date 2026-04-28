@@ -101,7 +101,7 @@ export default function RootLayout({
   }
 
   return (
-    <html lang="zh-CN">
+    <html lang="en">
       <head>
         <link rel="icon" href="/JB.png" />
         <link rel="apple-touch-icon" href="/JB.png" />

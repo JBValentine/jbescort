@@ -132,7 +132,7 @@ export default function Home() {
               <span className="text-gray-400 group-open:rotate-180 transition-transform">▼</span>
             </summary>
             <p className="text-gray-500 text-sm mt-3 leading-relaxed">
-              We&apos;ve done the research for you. jbescorts.org lists 11 active platforms that serve the Jalan Dhoby area and beyond. Each entry includes a brief description so you can quickly tell which site fits your needs — whether you prefer local escort girls or premium angel-tier companions.
+              We&apos;ve done the research for you. jbescorts.org lists 15 active platforms that serve the Jalan Dhoby area and beyond. Each entry includes a brief description so you can quickly tell which site fits your needs — whether you prefer local escort girls or premium angel-tier companions.
             </p>
           </details>
           <details className="bg-white rounded-xl border border-gray-200 p-5 group">
@@ -170,7 +170,7 @@ export default function Home() {
             '@context': 'https://schema.org',
             '@type': 'FAQPage',
             mainEntity: [
-              { '@type': 'Question', name: 'How do I find a reliable escort platform in Johor Bahru?', acceptedAnswer: { '@type': 'Answer', text: 'jbescorts.org lists 11 active platforms that serve the Jalan Dhoby area and beyond. Each entry includes a description so you can tell which site fits your needs — whether you prefer local escort girls or premium angel-tier companions.' } },
+              { '@type': 'Question', name: 'How do I find a reliable escort platform in Johor Bahru?', acceptedAnswer: { '@type': 'Answer', text: 'jbescorts.org lists 15 active platforms that serve the Jalan Dhoby area and beyond. Each entry includes a description so you can tell which site fits your needs — whether you prefer local escort girls or premium angel-tier companions.' } },
               { '@type': 'Question', name: 'Is there a Telegram group for updates?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. Visit t.me/JBmnXS or tap the button on jbescorts.org. The group shares new platform launches, user feedback, and scam alerts for the Johor Bahru area.' } },
               { '@type': 'Question', name: 'What is the difference between escort girl and escort angels?', acceptedAnswer: { '@type': 'Answer', text: 'Escort girl is the general term used across JB platforms, while escort angels usually means a curated, premium tier with stricter verification. Both types are represented in the directory.' } },
               { '@type': 'Question', name: 'How can I avoid getting scammed?', acceptedAnswer: { '@type': 'Answer', text: 'Stick to platforms listed on jbescorts.org, never pay the full amount before meeting, ask for a live photo or video call, and always meet in a well-known location.' } },

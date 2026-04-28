@@ -1,0 +1,438 @@
+#!/usr/bin/env python3
+"""
+WishCT Forum Scraper — 南马区自由身交流 (fid=538)
+自动抓取前6页帖子，同步到 src/data/freelancers.json
+有新增/删除时发送 Telegram 通知
+
+依赖安装: pip install requests beautifulsoup4 lxml
+环境变量: WISHCT_USERNAME, WISHCT_PASSWORD, TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID
+"""
+
+import requests
+import json
+import re
+import os
+import time
+from bs4 import BeautifulSoup
+from datetime import datetime
+from pathlib import Path
+
+# ─── 配置 ───────────────────────────────────────────────────────────────────
+FORUM_BASE   = "https://wishct.io"
+FID          = 538
+MAX_PAGES    = 6
+USERNAME     = os.environ.get("WISHCT_USERNAME", "")
+PASSWORD     = os.environ.get("WISHCT_PASSWORD", "")
+BOT_TOKEN    = os.environ.get("TELEGRAM_BOT_TOKEN", "")
+CHAT_ID      = os.environ.get("TELEGRAM_CHAT_ID", "")
+DATA_FILE    = Path("src/data/freelancers.json")
+IMAGES_DIR   = Path("public/freelancers")
+DELAY        = 1.5   # seconds between requests (be polite)
+
+HEADERS = {
+    "User-Agent": (
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+        "AppleWebKit/537.36 (KHTML, like Gecko) "
+        "Chrome/124.0.0.0 Safari/537.36"
+    ),
+    "Accept-Language": "zh-CN,zh;q=0.9,en;q=0.8",
+    "Referer": FORUM_BASE,
+}
+
+# 区域关键词 → {name, slug}
+AREA_MAP = {
+    "r&f":          {"name": "R&F富力公主湾", "slug": "r-and-f"},
+    "富力":          {"name": "R&F富力公主湾", "slug": "r-and-f"},
+    "austin":       {"name": "Austin奥斯汀",  "slug": "mount-austin"},
+    "奥斯汀":        {"name": "Austin奥斯汀",  "slug": "mount-austin"},
+    "百万镇":        {"name": "百万镇",         "slug": "taman-century"},
+    "taman century":{"name": "百万镇",         "slug": "taman-century"},
+    "jb town":      {"name": "坡底JB Town",   "slug": "jb-town"},
+    "坡底":          {"name": "坡底JB Town",   "slug": "jb-town"},
+    "nusa bestari": {"name": "Nusa Bestari",  "slug": "nusa-bestari"},
+    "nusa":         {"name": "Nusa Bestari",  "slug": "nusa-bestari"},
+    "tebrau":       {"name": "Tebrau地不佬",  "slug": "tebrau"},
+    "地不佬":        {"name": "Tebrau地不佬",  "slug": "tebrau"},
+    "danga":        {"name": "Danga Bay",     "slug": "danga-bay"},
+    "ksl":          {"name": "KSL",           "slug": "ksl"},
+    "perling":      {"name": "Perling",       "slug": "perling"},
+    "bukit indah":  {"name": "Bukit Indah",   "slug": "bukit-indah"},
+    "武吉英达":      {"name": "Bukit Indah",   "slug": "bukit-indah"},
+    "molek":        {"name": "Taman Molek",   "slug": "molek"},
+    "sentosa":      {"name": "Taman Sentosa", "slug": "taman-sentosa"},
+    "pelangi":      {"name": "彩虹花园",       "slug": "taman-pelangi"},
+    "彩虹":          {"name": "彩虹花园",       "slug": "taman-pelangi"},
+    "queen":        {"name": "皇后花园",       "slug": "taman-queen"},
+    "皇后":          {"name": "皇后花园",       "slug": "taman-queen"},
+    "sentral":      {"name": "JB Sentral",    "slug": "jb-sentral"},
+    "bayu":         {"name": "Bayu Puteri",   "slug": "bayu-puteri"},
+    "taman daya":   {"name": "Taman Daya",    "slug": "taman-daya"},
+    "世纪花园":      {"name": "世纪花园",       "slug": "taman-sri-tebrau"},
+    "大丰":          {"name": "大丰花园",       "slug": "taman-daya-2"},
+    "福林":          {"name": "福林园",         "slug": "taman-daya-fulin"},
+}
+
+NAT_FLAG_MAP = {
+    "🇨🇳": {"code": "CN", "name": "中国"},
+    "🇲🇾": {"code": "MY", "name": "马来西亚"},
+    "🇮🇩": {"code": "ID", "name": "印尼"},
+    "🇻🇳": {"code": "VN", "name": "越南"},
+    "🇹🇭": {"code": "TH", "name": "泰国"},
+    "🇹🇼": {"code": "TW", "name": "台湾"},
+    "🇰🇷": {"code": "KR", "name": "韩国"},
+    "🇵🇭": {"code": "PH", "name": "菲律宾"},
+}
+
+
+# ─── Session / Login ────────────────────────────────────────────────────────
+
+def make_session() -> requests.Session:
+    s = requests.Session()
+    s.headers.update(HEADERS)
+    return s
+
+
+def login(s: requests.Session) -> None:
+    """Discuz! login: GET formhash → POST credentials."""
+    r = s.get(f"{FORUM_BASE}/member.php?mod=logging&action=login", timeout=15)
+    soup = BeautifulSoup(r.text, "html.parser")
+    fh_tag = soup.find("input", {"name": "formhash"})
+    if not fh_tag:
+        raise RuntimeError("formhash not found — forum structure may have changed")
+
+    payload = {
+        "formhash":    fh_tag["value"],
+        "referer":     FORUM_BASE + "/",
+        "loginfield":  "username",
+        "username":    USERNAME,
+        "password":    PASSWORD,
+        "questionid":  "0",
+        "answer":      "",
+        "loginsubmit": "true",
+    }
+    s.post(
+        f"{FORUM_BASE}/member.php?mod=logging&action=login"
+        f"&loginsubmit=yes&infloat=yes&handlekey=ls",
+        data=payload, timeout=15,
+    )
+    # Verify by fetching the profile page
+    check = s.get(f"{FORUM_BASE}/home.php?mod=spacecp", timeout=15)
+    if "logging" in check.url or "login" in check.url.lower():
+        raise RuntimeError("Login failed — please check WISHCT_USERNAME / WISHCT_PASSWORD")
+    print("✅ Login successful")
+
+
+# ─── Thread List ─────────────────────────────────────────────────────────────
+
+def get_thread_list(s: requests.Session) -> list[dict]:
+    """Return [{tid, title, last_updated}] from pages 1–MAX_PAGES."""
+    threads = []
+    for page in range(1, MAX_PAGES + 1):
+        url = f"{FORUM_BASE}/forum.php?mod=forumdisplay&fid={FID}&page={page}"
+        r = s.get(url, timeout=15)
+        soup = BeautifulSoup(r.text, "html.parser")
+
+        for tbody in soup.select(
+            "tbody[id^='normalthread_'], tbody[id^='stickthread_']"
+        ):
+            link = tbody.select_one("a.s.xst, a[class*='xst']")
+            if not link:
+                continue
+            href = link.get("href", "")
+            m = re.search(r"tid=(\d+)|thread-(\d+)-", href)
+            if not m:
+                continue
+            tid = int(m.group(1) or m.group(2))
+            title = link.get_text(strip=True)
+
+            ts_tag = tbody.select_one("td.by em span")
+            ts = (ts_tag.get("title") or ts_tag.get_text(strip=True)) if ts_tag else ""
+
+            threads.append({"tid": tid, "title": title, "last_updated": ts})
+
+        print(f"  Page {page}: {len(soup.select('tbody[id^=normalthread_]'))} threads")
+        time.sleep(DELAY)
+
+    print(f"📋 Total {len(threads)} threads found")
+    return threads
+
+
+# ─── Thread Parsing ──────────────────────────────────────────────────────────
+
+def _find(pattern: str, text: str, default: str = "") -> str:
+    m = re.search(pattern, text, re.IGNORECASE)
+    return m.group(1).strip() if m else default
+
+
+def parse_thread(s: requests.Session, tid: int, title: str) -> dict | None:
+    url = f"{FORUM_BASE}/forum.php?mod=viewthread&tid={tid}"
+    r = s.get(url, timeout=15)
+    soup = BeautifulSoup(r.text, "html.parser")
+
+    posts = soup.select("div[id^='post_']")
+    if not posts:
+        return None
+
+    # ── First post = profile ──
+    first = posts[0]
+    msg_td = first.select_one("td[id^='postmessage_']")
+    if not msg_td:
+        return None
+    content = msg_td.get_text("\n", strip=True)
+
+    # ── Images ──
+    img_urls: list[str] = []
+    for img in first.select("img[file]"):
+        url_raw = img.get("file", "") or img.get("src", "")
+        if url_raw:
+            img_urls.append(url_raw if url_raw.startswith("http") else FORUM_BASE + url_raw)
+    for img in first.select("img[src*='/data/attachment/']"):
+        src = img["src"]
+        img_urls.append(src if src.startswith("http") else FORUM_BASE + src)
+    img_urls = list(dict.fromkeys(img_urls))[:5]  # deduplicate, max 5
+
+    # ── Field extraction ──
+    full = f"{title}\n{content}"
+
+    height  = _find(r"(\d{3})\s*cm", full)
+    weight  = _find(r"(\d{2})\s*kg", full)
+    cup     = _find(r"\b(\d{2}[A-G])\b", full)
+
+    price_raw = _find(r"RM\s*(\d{2,4}(?:\s*[-~]\s*\d{2,4})?)", full)
+    if price_raw:
+        nums = re.findall(r"\d+", price_raw)
+        price_min = int(nums[0]) if nums else 0
+        price_max = int(nums[-1]) if len(nums) > 1 else price_min
+    else:
+        price_min = price_max = 0
+
+    # WhatsApp
+    wa = _find(r"(?:whatsapp|wa|联系|电话)[^\d]*(\+?6?\s*01[0-9][\s\-]?\d{7,8})", full)
+    if not wa:
+        wa = _find(r"(01[0-9][\s\-]?\d{7,8})", full)
+    wa = re.sub(r"[\s\-]", "", wa)  # clean formatting
+    if wa and not wa.startswith("60"):
+        wa = "60" + wa
+
+    # Service type
+    water_kws   = ["下水", "过水", "全套", "做全", "爱爱", "有套", "无套"]
+    massage_kws = ["按摩", "massage", "马杀鸡"]
+    if any(k in full for k in water_kws):
+        service_type = "water"
+    elif any(k in full for k in massage_kws):
+        service_type = "massage"
+    else:
+        service_type = "other"
+
+    # Nationality
+    nat_flag = "🇨🇳"
+    nat_code = "CN"
+    nat_name = "中国"
+    for flag, info in NAT_FLAG_MAP.items():
+        if flag in full:
+            nat_flag, nat_code, nat_name = flag, info["code"], info["name"]
+            break
+
+    # Area
+    area_name = "新山"
+    area_slug = "johor-bahru"
+    full_lower = full.lower()
+    for kw, info in AREA_MAP.items():
+        if kw.lower() in full_lower:
+            area_name, area_slug = info["name"], info["slug"]
+            break
+
+    # Name: first meaningful token from title
+    name_m = re.match(r"^([^\[【\(（\s\/]{2,10})", title.strip())
+    name = name_m.group(1) if name_m else title[:8]
+
+    # ── Reviews (replies) ──
+    reviews = []
+    for post in posts[1:11]:
+        r_td = post.select_one("td[id^='postmessage_']")
+        a_tag = post.select_one("a[href*='uid='], div.authi a")
+        if r_td and a_tag:
+            text = r_td.get_text("\n", strip=True)
+            if len(text) > 15:
+                reviews.append({
+                    "author": a_tag.get_text(strip=True),
+                    "content": text[:400],
+                })
+
+    return {
+        "forumTid":       tid,
+        "name":           name,
+        "nationalityFlag": nat_flag,
+        "nationalityCode": nat_code,
+        "nationalityName": nat_name,
+        "serviceType":    service_type,
+        "area":           area_name,
+        "areaSlug":       area_slug,
+        "height":         height,
+        "weight":         weight,
+        "cup":            cup,
+        "priceMin":       price_min,
+        "priceMax":       price_max,
+        "description":    content[:800],
+        "whatsapp":       wa,
+        "_photoUrls":     img_urls,    # temp field, removed after download
+        "reviews":        reviews,
+        "lastUpdated":    datetime.now().isoformat(),
+    }
+
+
+# ─── Image Download ───────────────────────────────────────────────────────────
+
+def download_images(freelancer_id: int, photo_urls: list[str], s: requests.Session) -> list[str]:
+    if not photo_urls:
+        return []
+
+    img_dir = IMAGES_DIR / str(freelancer_id)
+    img_dir.mkdir(parents=True, exist_ok=True)
+
+    paths = []
+    for i, url in enumerate(photo_urls[:5], 1):
+        dest = img_dir / f"{i}.jpg"
+        if dest.exists():
+            paths.append(f"/freelancers/{freelancer_id}/{i}.jpg")
+            continue
+        try:
+            resp = s.get(url, timeout=15, stream=True)
+            if resp.status_code == 200:
+                with open(dest, "wb") as f:
+                    for chunk in resp.iter_content(8192):
+                        f.write(chunk)
+                paths.append(f"/freelancers/{freelancer_id}/{i}.jpg")
+                print(f"    📷 Downloaded image {i}")
+            time.sleep(0.5)
+        except Exception as e:
+            print(f"    ⚠️  Image {i} failed: {e}")
+
+    return paths
+
+
+# ─── Telegram ────────────────────────────────────────────────────────────────
+
+def send_telegram(message: str) -> None:
+    if not BOT_TOKEN or not CHAT_ID:
+        print("⚠️  TELEGRAM_BOT_TOKEN or TELEGRAM_CHAT_ID not set, skipping notification")
+        return
+    try:
+        requests.post(
+            f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage",
+            data={
+                "chat_id":                  CHAT_ID,
+                "text":                     message,
+                "parse_mode":               "HTML",
+                "disable_web_page_preview": True,
+            },
+            timeout=10,
+        )
+        print("📱 Telegram notification sent")
+    except Exception as e:
+        print(f"⚠️  Telegram failed: {e}")
+
+
+# ─── Main ────────────────────────────────────────────────────────────────────
+
+def main():
+    print(f"🚀 WishCT Scraper — {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+
+    if not USERNAME or not PASSWORD:
+        raise RuntimeError("WISHCT_USERNAME and WISHCT_PASSWORD must be set")
+
+    # Load existing data
+    existing: dict[int, dict] = {}
+    if DATA_FILE.exists():
+        with open(DATA_FILE, "r", encoding="utf-8") as f:
+            saved = json.load(f)
+            existing = {item["forumTid"]: item for item in saved.get("freelancers", [])}
+    print(f"📂 Existing records: {len(existing)}")
+
+    s = make_session()
+    login(s)
+
+    threads = get_thread_list(s)
+    current_tids = {t["tid"] for t in threads}
+    old_tids     = set(existing.keys())
+
+    new_tids     = current_tids - old_tids
+    deleted_tids = old_tids - current_tids
+    print(f"📊 New: {len(new_tids)}, Deleted: {len(deleted_tids)}, Unchanged: {len(current_tids & old_tids)}")
+
+    # Next available sequential ID
+    max_id = max((item.get("id", 0) for item in existing.values()), default=0)
+
+    # Build updated dataset
+    updated: dict[int, dict] = {
+        tid: item for tid, item in existing.items() if tid not in deleted_tids
+    }
+
+    new_names: list[str] = []
+    for thread in threads:
+        tid = thread["tid"]
+        if tid not in new_tids:
+            continue
+        print(f"  ➕ {thread['title'][:50]}")
+        profile = parse_thread(s, tid, thread["title"])
+        if not profile:
+            print("     ⚠️  Parse failed, skipping")
+            continue
+
+        max_id += 1
+        profile["id"] = max_id
+        profile["photos"] = download_images(max_id, profile.pop("_photoUrls", []), s)
+        updated[tid] = profile
+        new_names.append(profile["name"])
+        time.sleep(DELAY)
+
+    # Sort by id ascending
+    final_list = sorted(updated.values(), key=lambda x: x.get("id", 0))
+
+    # Build areas index
+    areas_map: dict[str, dict] = {}
+    for item in final_list:
+        slug = item.get("areaSlug", "johor-bahru")
+        if slug not in areas_map:
+            areas_map[slug] = {"name": item.get("area", slug), "slug": slug, "count": 0}
+        areas_map[slug]["count"] += 1
+    areas = sorted(areas_map.values(), key=lambda x: -x["count"])
+
+    output = {
+        "lastUpdated": datetime.now().isoformat(),
+        "totalCount":  len(final_list),
+        "areas":       areas,
+        "freelancers": final_list,
+    }
+
+    DATA_FILE.parent.mkdir(parents=True, exist_ok=True)
+    with open(DATA_FILE, "w", encoding="utf-8") as f:
+        json.dump(output, f, ensure_ascii=False, indent=2)
+    print(f"✅ Saved {len(final_list)} records → {DATA_FILE}")
+
+    # Telegram notification
+    if new_names or deleted_tids:
+        deleted_names = [
+            existing[t]["name"] for t in list(deleted_tids)[:5] if t in existing
+        ]
+        lines = [
+            "🔄 <b>JBEscorts 自由身数据更新</b>",
+            f"📅 {datetime.now().strftime('%Y-%m-%d %H:%M')}",
+        ]
+        if new_names:
+            preview = "、".join(new_names[:5])
+            suffix  = f"…等{len(new_names)}条" if len(new_names) > 5 else ""
+            lines.append(f"➕ 新增：{preview}{suffix}")
+        if deleted_tids:
+            preview = "、".join(deleted_names)
+            suffix  = f"…等{len(deleted_tids)}条" if len(deleted_tids) > 5 else ""
+            lines.append(f"❌ 删除：{preview}{suffix}")
+        lines.append(f"📊 当前共 <b>{len(final_list)}</b> 条自由身资料")
+        lines.append(f'🔗 <a href="https://jbescorts.org/freelance">查看完整列表</a>')
+        send_telegram("\n".join(lines))
+    else:
+        print("📭 No changes — skipping Telegram notification")
+
+
+if __name__ == "__main__":
+    main()

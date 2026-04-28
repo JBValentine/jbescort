@@ -1,0 +1,68 @@
+name: Sync Freelancers
+
+# 每2天凌晨2点UTC（马来西亚时间10点）自动运行
+# 也可以在 GitHub Actions 页面手动触发
+on:
+  schedule:
+    - cron: '0 2 */2 * *'
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write   # 允许 push 数据文件
+
+    steps:
+      # 1. 检出代码（使用写权限 token）
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      # 2. 安装 Python
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      # 3. 安装依赖
+      - name: Install dependencies
+        run: pip install requests beautifulsoup4 lxml
+
+      # 4. 运行爬虫（带论坛账号 + Telegram Bot 密钥）
+      - name: Run scraper
+        env:
+          WISHCT_USERNAME:    ${{ secrets.WISHCT_USERNAME }}
+          WISHCT_PASSWORD:    ${{ secrets.WISHCT_PASSWORD }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID:   ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python scripts/scrape_wishct.py
+
+      # 5. 若数据有变化则提交并 push
+      - name: Commit data changes
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add src/data/freelancers.json public/freelancers/ || true
+          git diff --staged --quiet && echo "No changes" || (
+            git commit -m "chore: sync freelancers $(date +%Y-%m-%d)"
+            git push
+          )
+
+      # 6. SSH 进 VPS，拉取最新代码并重新构建部署
+      #    需要在 GitHub Secrets 中设置: VPS_HOST, VPS_USER, VPS_SSH_KEY
+      - name: Deploy to VPS
+        if: ${{ secrets.VPS_HOST != '' }}
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host:     ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key:      ${{ secrets.VPS_SSH_KEY }}
+          script: |
+            cd /var/www/jbescorts   # ← 改成你的项目路径
+            git pull origin main
+            npm install
+            npm run build
+            pm2 restart jbescorts || pm2 start npm --name jbescorts -- start

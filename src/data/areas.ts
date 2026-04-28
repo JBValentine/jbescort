@@ -94,13 +94,13 @@ export const areas: AreaData[] = [
 ]
 
 // 获取推荐平台的完整信息
-export const platformLinks: Record<string, { url: string; descEn: string; descZh: string }> = {
-  'jb69girl': { url: 'https://jb69girl.com/', descEn: 'Premium JB escort platform with real photos and verified profiles.', descZh: '新山顶级伴游平台，真实照片与认证资料。' },
-  'JBE': { url: 'https://jbescort.fun/', descEn: 'Popular JB escort directory, updated daily.', descZh: '热门新山伴游目录，每日更新。' },
-  'JB Escort 2 Me': { url: 'https://jbescorts2me.net/', descEn: 'Verified door-to-door escort service in JB.', descZh: '新山认证上门伴游服务。' },
-  'JOHOR BAHRU 88': { url: 'https://jbescort88.com/', descEn: 'Established JB escort directory with long-standing reputation.', descZh: '老牌新山伴游目录。' },
-  'Jbgirl': { url: 'https://jbescort2u.net/', descEn: 'Curated selection of JB girls with detailed profiles.', descZh: '精选JB女孩合集。' },
-  'JBESCORT4U': { url: 'https://jbescort4u.com/', descEn: 'Dedicated JB escort platform with secure booking.', descZh: '专属JB伴游平台。' },
-  'JBSam': { url: 'https://johorescortsangels.com/', descEn: 'Handpicked premium companions with elegance.', descZh: '精心挑选的高端伴侣。' },
-  'JB Escort Xiaojie': { url: 'https://jbxiaojie.com/', descEn: 'Specializing in Chinese-speaking escorts.', descZh: '专注中文伴游服务。' },
+export const platformLinks: Record<string, { slug: string; url: string; descEn: string; descZh: string }> = {
+  'jb69girl': { slug: 'jb69girl', url: 'https://jb69girl.com/', descEn: 'Premium JB escort platform with real photos and verified profiles.', descZh: '新山顶级伴游平台，真实照片与认证资料。' },
+  'JBE': { slug: 'jbe', url: 'https://jbescort.fun/', descEn: 'Popular JB escort directory, updated daily.', descZh: '热门新山伴游目录，每日更新。' },
+  'JB Escort 2 Me': { slug: 'jb-escort-2-me', url: 'https://jbescorts2me.net/', descEn: 'Verified door-to-door escort service in JB.', descZh: '新山认证上门伴游服务。' },
+  'JOHOR BAHRU 88': { slug: 'johor-bahru-88', url: 'https://jbescort88.com/', descEn: 'Established JB escort directory with long-standing reputation.', descZh: '老牌新山伴游目录。' },
+  'Jbgirl': { slug: 'jbgirl', url: 'https://jbescort2u.net/', descEn: 'Curated selection of JB girls with detailed profiles.', descZh: '精选JB女孩合集。' },
+  'JBESCORT4U': { slug: 'jbescort4u', url: 'https://jbescort4u.com/', descEn: 'Dedicated JB escort platform with secure booking.', descZh: '专属JB伴游平台。' },
+  'JBSam': { slug: 'jbsam', url: 'https://johorescortsangels.com/', descEn: 'Handpicked premium companions with elegance.', descZh: '精心挑选的高端伴侣。' },
+  'JB Escort Xiaojie': { slug: 'jb-escort-xiaojie', url: 'https://jbxiaojie.com/', descEn: 'Specializing in Chinese-speaking escorts.', descZh: '专注中文伴游服务。' },
 }
