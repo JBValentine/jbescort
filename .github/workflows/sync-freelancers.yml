@@ -25,11 +25,10 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-          cache: 'pip'
 
       # 3. 安装依赖
       - name: Install dependencies
-        run: pip install requests beautifulsoup4 lxml
+        run: pip install -r scripts/requirements.txt
 
       # 4. 运行爬虫（带论坛账号 + Telegram Bot 密钥）
       - name: Run scraper
