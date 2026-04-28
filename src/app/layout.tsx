@@ -89,7 +89,7 @@ export default function RootLayout({
           { '@type': 'ListItem', position: 7, name: 'JBSam', url: 'https://jbescorts.org/platform/jbsam' },
           { '@type': 'ListItem', position: 8, name: 'JB Escort Xiaojie', url: 'https://jbescorts.org/platform/jb-escort-xiaojie' },
           { '@type': 'ListItem', position: 9, name: 'JB Escort Entertainment', url: 'https://jbescorts.org/platform/jb-escort-entertainment' },
-          { '@type': 'ListItem', position: 10, name: '新山情人�?, url: 'https://jbescorts.org/platform/jb-valentine' },
+          { '@type': 'ListItem', position: 10, name: '新山情人网', url: 'https://jbescorts.org/platform/jb-valentine' },
           { '@type': 'ListItem', position: 11, name: '愿望城市', url: 'https://jbescorts.org/platform/wish-city' },
           { '@type': 'ListItem', position: 12, name: 'JB Escort Plaboy', url: 'https://jbescorts.org/platform/jb-escort-plaboy' },
           { '@type': 'ListItem', position: 13, name: 'JHB Escort Service', url: 'https://jbescorts.org/platform/jhb-escort-service' },
