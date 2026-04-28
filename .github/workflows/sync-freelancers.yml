@@ -54,7 +54,6 @@ jobs:
       # 6. SSH 进 VPS，拉取最新代码并重新构建部署
       #    需要在 GitHub Secrets 中设置: VPS_HOST, VPS_USER, VPS_SSH_KEY
       - name: Deploy to VPS
-        if: ${{ secrets.VPS_HOST != '' }}
         uses: appleboy/ssh-action@v1.0.3
         with:
           host:     ${{ secrets.VPS_HOST }}
