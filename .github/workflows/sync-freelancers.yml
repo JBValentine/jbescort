@@ -63,7 +63,9 @@ jobs:
             echo "=== Current dir: $(pwd) ==="
             cd /var/www/jbescorts
             echo "=== Project dir: $(pwd) ==="
-            git pull origin main
+            git fetch origin
+            git reset --hard origin/main
+            git clean -fd
             # 清理可能存在的旧残留文件
             rm -f src/data/freelancerData.ts
             rm -rf src/app/freelance/\[region\]
