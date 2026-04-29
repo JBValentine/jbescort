@@ -30,13 +30,11 @@ jobs:
       - name: Install dependencies
         run: pip install -r scripts/requirements.txt
 
-      # 4. 运行爬虫（带论坛账号 + Telegram Bot 密钥）
+      # 4. 运行爬虫（不带 Telegram，先只抓数据）
       - name: Run scraper
         env:
           WISHCT_USERNAME:    ${{ secrets.WISHCT_USERNAME }}
           WISHCT_PASSWORD:    ${{ secrets.WISHCT_PASSWORD }}
-          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          TELEGRAM_CHAT_ID:   ${{ secrets.TELEGRAM_CHAT_ID }}
         run: python scripts/scrape_wishct.py
 
       # 5. 若数据有变化则提交并 push
@@ -74,3 +72,13 @@ jobs:
             echo "=== Build done, restarting pm2 ==="
             pm2 restart jbescorts || pm2 start npm --name jbescorts -- start
             pm2 list
+
+      # 7. VPS 部署完成后发 Telegram 通知（网站已更新才发群）
+      - name: Send Telegram notification
+        env:
+          WISHCT_USERNAME:    ${{ secrets.WISHCT_USERNAME }}
+          WISHCT_PASSWORD:    ${{ secrets.WISHCT_PASSWORD }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID:   ${{ secrets.TELEGRAM_CHAT_ID }}
+          NOTIFY_ONLY:        "true"
+        run: python scripts/scrape_wishct.py

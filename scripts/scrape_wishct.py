@@ -363,10 +363,8 @@ def build_card_caption(f: dict) -> str:
         f"🏙 <b>【{area}】{name}</b> {flag}",
         f"📏 {height}  ⚖️ {weight}  👙 {cup}",
         f"💰 {price}  ·  {service}",
+        f'🔗 <a href="{url}">查看详情 / 联系</a>',
     ]
-    if wa:
-        lines.append(f'📱 <a href="https://wa.me/{wa}">联系 WhatsApp</a>')
-    lines.append(f'🔗 <a href="{url}">查看详情</a>')
     return "\n".join(lines)
 
 
@@ -406,6 +404,54 @@ def send_telegram_card(f: dict) -> None:
 
 def main():
     print(f"🚀 WishCT Scraper — {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+
+    # NOTIFY_ONLY mode: just read saved data and send pending notifications
+    if os.environ.get("NOTIFY_ONLY") == "true":
+        print("📱 NOTIFY_ONLY mode — sending Telegram notifications from saved data")
+        if not DATA_FILE.exists():
+            print("⚠️  No data file found, skipping")
+            return
+        with open(DATA_FILE, "r", encoding="utf-8") as f:
+            saved = json.load(f)
+        final_list = saved.get("freelancers", [])
+        # Read pending notification list saved by scraper step
+        pending_file = Path("scripts/.pending_notify.json")
+        if not pending_file.exists():
+            print("📭 No pending notifications")
+            return
+        with open(pending_file, "r", encoding="utf-8") as f:
+            pending = json.load(f)
+        new_tids     = set(pending.get("new_tids", []))
+        deleted_names = pending.get("deleted_names", [])
+        new_names    = pending.get("new_names", [])
+        updated      = {item["forumTid"]: item for item in final_list}
+
+        MAX_CARDS = 20
+        if new_names or deleted_names:
+            lines = [
+                "🔄 <b>JBEscorts 自由身数据更新</b>",
+                f"📅 {datetime.now().strftime('%Y-%m-%d %H:%M')}",
+            ]
+            if new_names:
+                extra = f"（仅展示前{MAX_CARDS}条）" if len(new_names) > MAX_CARDS else ""
+                lines.append(f"➕ 新增 <b>{len(new_names)}</b> 条{extra}")
+            if deleted_names:
+                preview = "、".join(deleted_names[:5])
+                suffix  = f"…等{len(deleted_names)}条" if len(deleted_names) > 5 else ""
+                lines.append(f"❌ 删除：{preview}{suffix}")
+            lines.append(f"📊 当前共 <b>{len(final_list)}</b> 条自由身资料")
+            lines.append(f'🔗 <a href="https://jbescorts.org/freelance">查看完整列表</a>')
+            send_telegram("\n".join(lines))
+
+            new_cards = [updated[tid] for tid in list(new_tids)[:MAX_CARDS] if tid in updated]
+            for f_data in new_cards:
+                send_telegram_card(f_data)
+        else:
+            print("📭 No changes — skipping Telegram notification")
+
+        # Clean up pending file
+        pending_file.unlink(missing_ok=True)
+        return
 
     if not USERNAME or not PASSWORD:
         raise RuntimeError("WISHCT_USERNAME and WISHCT_PASSWORD must be set")
@@ -479,32 +525,23 @@ def main():
         json.dump(output, f, ensure_ascii=False, indent=2)
     print(f"✅ Saved {len(final_list)} records → {DATA_FILE}")
 
-    # Telegram notification
-    MAX_CARDS = 20   # cap per run to avoid flooding
-    if new_names or deleted_tids:
-        deleted_names = [
-            existing[t]["name"] for t in list(deleted_tids)[:5] if t in existing
-        ]
-        # 1. Summary message
-        lines = [
-            "🔄 <b>JBEscorts 自由身数据更新</b>",
-            f"📅 {datetime.now().strftime('%Y-%m-%d %H:%M')}",
-        ]
-        if new_names:
-            extra = f"（仅展示前{MAX_CARDS}条）" if len(new_names) > MAX_CARDS else ""
-            lines.append(f"➕ 新增 <b>{len(new_names)}</b> 条{extra}")
-        if deleted_tids:
-            preview = "、".join(deleted_names)
-            suffix  = f"…等{len(deleted_tids)}条" if len(deleted_tids) > 5 else ""
-            lines.append(f"❌ 删除：{preview}{suffix}")
-        lines.append(f"📊 当前共 <b>{len(final_list)}</b> 条自由身资料")
-        lines.append(f'🔗 <a href="https://jbescorts.org/freelance">查看完整列表</a>')
-        send_telegram("\n".join(lines))
+    # Save pending notification info for NOTIFY_ONLY step (runs after VPS deploy)
+    pending_file = Path("scripts/.pending_notify.json")
+    deleted_names_list = [
+        existing[t]["name"] for t in list(deleted_tids)[:5] if t in existing
+    ]
+    with open(pending_file, "w", encoding="utf-8") as f:
+        json.dump({
+            "new_tids":      list(new_tids),
+            "new_names":     new_names,
+            "deleted_names": deleted_names_list,
+        }, f, ensure_ascii=False)
+    print(f"📝 Pending notifications saved ({len(new_names)} new, {len(deleted_tids)} deleted)")
 
-        # 2. Send individual photo cards for new freelancers
-        new_cards = [updated[tid] for tid in list(new_tids)[:MAX_CARDS] if tid in updated]
-        for f_data in new_cards:
-            send_telegram_card(f_data)
+    # Telegram notification — sent AFTER data is saved (VPS deploy is triggered by workflow)
+    # Actual sending is done in the NOTIFY_ONLY step after VPS deploy completes.
+    if new_names or deleted_tids:
+        print(f"📋 {len(new_names)} new, {len(deleted_tids)} deleted — notifications queued for post-deploy step")
     else:
         print("📭 No changes — skipping Telegram notification")
 
