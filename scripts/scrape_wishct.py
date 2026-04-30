@@ -254,6 +254,61 @@ def parse_thread(s: requests.Session, tid: int, title: str) -> dict | None:
     name_m = re.match(r"^([^\[【\(（\s\/]{2,10})", title.strip())
     name = name_m.group(1) if name_m else title[:8]
 
+    # ── 从原始内容提取各字段，组装标准描述模板 ──
+    def _get_field(raw: str, *labels) -> str:
+        for label in labels:
+            m2 = re.search(
+                rf'(?:{re.escape(label)})\s*[：:]\s*\n?(.*?)(?:\n[^\n]*[：:]|\Z)',
+                raw, re.DOTALL
+            )
+            if m2:
+                for line in m2.group(1).strip().splitlines():
+                    line = line.strip()
+                    if line and not re.match(r'^[A-Za-z\s]+$', line):
+                        return line
+                return m2.group(1).strip().splitlines()[0].strip() if m2.group(1).strip() else ""
+        return ""
+
+    def _get_service_block(raw: str) -> str:
+        svc_m2 = re.search(r'服务价钱[：:]|(?:服务|价钱)[：:]', raw)
+        if not svc_m2:
+            svc_m2 = re.search(r'(?:配套|RM\d)', raw)
+        if not svc_m2:
+            return ""
+        after = raw[svc_m2.end():]
+        cm2 = re.search(r'(?:联系|[Tt]elegram|https://t\.me|[Ww]hats[Aa]pp|直接点击)', after)
+        block = after[:cm2.start()] if cm2 else after
+        block = re.sub(r'好评\d+', '', block)
+        return block.strip()
+
+    _name_clean = _get_field(content, "名字") or name
+    _nat_clean  = _get_field(content, "国籍") or nat_name
+    _size_raw   = _get_field(content, "身材", "身高")
+    if not _size_raw:
+        _parts = []
+        if height: _parts.append(f"{height}cm")
+        if weight: _parts.append(f"{weight}kg")
+        if cup:    _parts.append(cup)
+        _size_raw = "/".join(_parts)
+    _area_clean = _get_field(content, "地点") or area_name
+    _svc_block  = _get_service_block(content)
+    _tg = re.search(r'https://t\.me/\S+', content)
+    _contact_lines = []
+    if _tg:
+        _contact_lines.append(f"Telegram：{_tg.group(0)}")
+    if wa:
+        _contact_lines.append(f"WhatsApp：{wa}")
+    _contact = "\n".join(_contact_lines) if _contact_lines else wa
+
+    description = (
+        f"名字：{_name_clean}\n"
+        f"国籍：{_nat_clean}\n"
+        f"身材：{_size_raw}\n"
+        f"地点：{_area_clean}\n"
+        f"服务价钱：\n{_svc_block}\n\n"
+        f"联系方式：\n{_contact}"
+    ).strip()
+
     # ── Reviews (replies) ──
     reviews = []
     for post in posts[1:11]:
@@ -281,7 +336,7 @@ def parse_thread(s: requests.Session, tid: int, title: str) -> dict | None:
         "cup":            cup,
         "priceMin":       price_min,
         "priceMax":       price_max,
-        "description":    content[:800],
+        "description":    description,
         "whatsapp":       wa,
         "_photoUrls":     img_urls,    # temp field, removed after download
         "reviews":        reviews,
@@ -347,31 +402,39 @@ def build_card_caption(f: dict) -> str:
     name  = f.get("name", "")
     flag  = f.get("nationalityFlag", "")
 
-    height = f"{f['height']}cm" if f.get("height") else "—"
-    weight = f"{f['weight']}kg" if f.get("weight") else "—"
-    cup    = f.get("cup") or "—"
-
     p_min  = f.get("priceMin", 0)
     p_max  = f.get("priceMax", 0)
     if p_min and p_max and p_min != p_max:
-        price = f"RM {p_min}–{p_max}"
+        price = f"RM{p_min}-{p_max}"
     elif p_min:
-        price = f"RM {p_min}"
+        price = f"RM{p_min}"
     else:
         price = "价格面议"
 
     svc_map = {"water": "💦 水类", "massage": "💆 按摩", "other": "✨ 其他"}
     service = svc_map.get(f.get("serviceType", "other"), "✨ 其他")
 
+    nat_name = f.get("nationalityName", "")
+    area_slug = f.get("areaSlug", "")
     fid  = f.get("id", "")
-    url  = f"https://jbescorts.org/freelancer/{fid}"
-    wa   = f.get("whatsapp", "")
 
+    # hashtags
+    tag_area = f"#{area.replace(' ', '').replace('&', '')}"
+    tag_svc  = "#水类" if f.get("serviceType") == "water" else ("#按摩" if f.get("serviceType") == "massage" else "#其他")
+    tag_nat  = f"#{nat_name}" if nat_name else ""
+
+    sep = "━━━━━━━━━━━━━━━"
     lines = [
-        f"🏙 <b>【{area}】{name}</b> {flag}",
-        f"📏 {height}  ⚖️ {weight}  👙 {cup}",
-        f"💰 {price}  ·  {service}",
-        f'🔗 <a href="{url}">查看详情 / 联系</a>',
+        f"📍 {area} | {service}",
+        sep,
+        f"",
+        f"💃 姓名：{name} {flag}",
+        f"💰 价格：{price}",
+        f"",
+        sep,
+        f'🌐 查看详情 jbescorts.org/freelancer/{fid}',
+        sep,
+        f"{tag_area} {tag_svc} {tag_nat}",
     ]
     return "\n".join(lines)
 
