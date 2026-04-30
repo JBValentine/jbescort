@@ -180,6 +180,14 @@ def parse_thread(s: requests.Session, tid: int, title: str) -> dict | None:
         return None
     content = msg_td.get_text("\n", strip=True)
 
+    # ── 清理固定模板文字 ──
+    _NOISE_PATTERNS = [
+        r"直接点击\s*WhatsApp\s*我",
+        r"[（(]\s*加我个人\s*[Ww]hats[Aa]pp\s*时[，,]?\s*请说明是愿望的会员\s*[）)]",
+    ]
+    for _pat in _NOISE_PATTERNS:
+        content = re.sub(_pat, "", content, flags=re.IGNORECASE).strip()
+
     # ── Images ──
     img_urls: list[str] = []
     for img in first.select("img[file]"):
@@ -524,6 +532,15 @@ def main():
     with open(DATA_FILE, "w", encoding="utf-8") as f:
         json.dump(output, f, ensure_ascii=False, indent=2)
     print(f"✅ Saved {len(final_list)} records → {DATA_FILE}")
+
+    # ── 清理孤立图片目录（freelancer 已删除但图片仍存在）──
+    active_ids = {str(item["id"]) for item in final_list}
+    if IMAGES_DIR.exists():
+        for img_dir in IMAGES_DIR.iterdir():
+            if img_dir.is_dir() and img_dir.name not in active_ids:
+                import shutil
+                shutil.rmtree(img_dir)
+                print(f"  🗑️  Removed orphaned images: {img_dir}")
 
     # Save pending notification info for NOTIFY_ONLY step (runs after VPS deploy)
     pending_file = Path("scripts/.pending_notify.json")
