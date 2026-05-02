@@ -399,8 +399,11 @@ def send_telegram(message: str) -> None:
 def build_card_caption(f: dict) -> str:
     """Build formatted caption for a freelancer photo card."""
     area  = f.get("area", "")
-    name  = f.get("name", "")
     flag  = f.get("nationalityFlag", "")
+    # 优先从 description 提取真实名字，与前端逻辑一致
+    desc = f.get("description", "")
+    m = re.search(r'名字[：:]\s*\n?([^\n]+)', desc)
+    name = m.group(1).strip() if m else f.get("name", "")
 
     p_min  = f.get("priceMin", 0)
     p_max  = f.get("priceMax", 0)
