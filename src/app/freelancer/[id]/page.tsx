@@ -2,6 +2,7 @@ import { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import freelancerData from '@/data/freelancers.json'
+import PhotoGallery from './PhotoGallery'
 
 interface Props {
   params: { id: string }
@@ -90,43 +91,12 @@ export default function FreelancerPage({ params }: Props) {
 
           {/* ── Left: Photos ── */}
           <div className="lg:col-span-1">
-            {/* Main photo */}
-            <div className="relative w-full aspect-[3/4] bg-gray-200 rounded-2xl overflow-hidden mb-3 shadow-md">
-              {f.photos?.[0] ? (
-                <img
-                  src={f.photos[0]}
-                  alt={`${f.name} 1`}
-                  className="w-full h-full object-cover object-top"
-                />
-              ) : (
-                <div className="w-full h-full flex flex-col items-center justify-center text-gray-400">
-                  <span className="text-5xl mb-2">{f.nationalityFlag}</span>
-                  <span className="text-sm">暂无图片</span>
-                </div>
-              )}
-              <span className="absolute top-3 left-3 bg-black/70 text-white text-xs px-2 py-1 rounded-full backdrop-blur-sm">
-                {serviceIcon} {serviceLabel}
-              </span>
-            </div>
-
-            {/* Thumbnail strip */}
-            {f.photos?.length > 1 && (
-              <div className="flex gap-2 overflow-x-auto">
-                {f.photos.map((photo: string, i: number) => (
-                  <div
-                    key={i}
-                    className="flex-shrink-0 w-16 h-20 rounded-lg overflow-hidden bg-gray-200"
-                  >
-                    <img
-                      src={photo}
-                      alt={`${f.name} ${i + 1}`}
-                      className="w-full h-full object-cover object-top"
-                      loading="lazy"
-                    />
-                  </div>
-                ))}
-              </div>
-            )}
+            <PhotoGallery
+              photos={f.photos || []}
+              name={f.name}
+              serviceIcon={serviceIcon}
+              serviceLabel={serviceLabel}
+            />
           </div>
 
           {/* ── Right: Info ── */}
