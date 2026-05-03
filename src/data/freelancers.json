@@ -1,26 +1,26 @@
 {
-  "lastUpdated": "2026-05-03T03:07:32.155905",
+  "lastUpdated": "2026-05-03T15:05:35.910652",
   "totalCount": 288,
   "areas": [
     {
       "name": "R&F富力公主湾",
       "slug": "r-and-f",
-      "count": 151
+      "count": 153
     },
     {
       "name": "Austin奥斯汀",
       "slug": "mount-austin",
-      "count": 46
-    },
-    {
-      "name": "新山",
-      "slug": "johor-bahru",
-      "count": 19
+      "count": 44
     },
     {
       "name": "百万镇",
       "slug": "taman-century",
-      "count": 16
+      "count": 18
+    },
+    {
+      "name": "新山",
+      "slug": "johor-bahru",
+      "count": 18
     },
     {
       "name": "坡底JB Town",
@@ -73,13 +73,13 @@
       "count": 2
     },
     {
-      "name": "Taman Sentosa",
-      "slug": "taman-sentosa",
-      "count": 2
-    },
-    {
       "name": "Bayu Puteri",
       "slug": "bayu-puteri",
+      "count": 1
+    },
+    {
+      "name": "Taman Sentosa",
+      "slug": "taman-sentosa",
       "count": 1
     },
     {
@@ -3224,31 +3224,6 @@
         "/freelancers/86/1.jpg",
         "/freelancers/86/2.jpg",
         "/freelancers/86/3.jpg"
-      ]
-    },
-    {
-      "forumTid": 2204460,
-      "name": "【R&F】中国自",
-      "nationalityFlag": "🇨🇳",
-      "nationalityCode": "CN",
-      "nationalityName": "中国",
-      "serviceType": "water",
-      "area": "R&F富力公主湾",
-      "areaSlug": "r-and-f",
-      "height": "170",
-      "weight": "52",
-      "cup": "36C",
-      "priceMin": 280,
-      "priceMax": 280,
-      "description": "名字：小酥姐姐\n国籍：中国\n身材：170cm/52kg/36C\n地点：富力公主湾\n服务价钱：\n配套一：\n亲吻➕陪浴➕水中萧➕鸳鸯戏水➕指滑➕舔蛋➕胸推➕臀推➕毛扫➕漫游➕吸皮➕海底捞➕可亲胸➕角色扮演鸳鸯共浴➕69+舔鲍鱼+按摩抚摸等全套服务➕激情有套爱爱\nRM280\n配套二：\n普通按摩➕鸳鸯浴➕指尖漫游➕舌尖漫游➕胸推➕胸爆➕海底捞月➕舔蛋蛋➕打飞机➕无套口交\nRM240\n配套三：\n包夜\n价格私聊\n全身理疗\n全身水疗\nRM299\n/90分钟\n泰式按摩+跪背踩背\nRM269\n/70分钟\n全身按摩\nRM80\n/48分钟\n肩颈按摩+精油开背\nRM188\n/60分钟\n精油开背+刮痧+拔罐\nRM199\n/60分钟\n局部调理与护理：\n局部推拿\nRM80\n/40分钟\n精油开背\nRM98\n/40分钟\n\n联系方式：\nWhatsApp：60175798470",
-      "whatsapp": "60175798470",
-      "reviews": [],
-      "lastUpdated": "2026-04-28T08:57:50.577962",
-      "id": 87,
-      "photos": [
-        "/freelancers/87/1.jpg",
-        "/freelancers/87/2.jpg",
-        "/freelancers/87/3.jpg"
       ]
     },
     {
@@ -6796,38 +6771,6 @@
       ]
     },
     {
-      "forumTid": 2199970,
-      "name": "【Austin】",
-      "nationalityFlag": "🇨🇳",
-      "nationalityCode": "CN",
-      "nationalityName": "中国",
-      "serviceType": "water",
-      "area": "Austin奥斯汀",
-      "areaSlug": "mount-austin",
-      "height": "160",
-      "weight": "48",
-      "cup": "36C",
-      "priceMin": 78,
-      "priceMax": 78,
-      "description": "名字：诺诺\n国籍：中国\n身材：160CM/48KG/36C\n地点：Austin\n服务价钱：\n普通按摩\nRM78\n/60分钟；\nRM118\n/90分钟\n配套一：\n服务有身体按摩➕全身推油➕海底捞月➕抓根保健➕男性私密保养\nRM138\n/60分钟\n配套二：\n穿制服，送（耳烛或者艾灸调理，有拔罐，刮痧）任选一个\n以上配套服务有身体按摩➕全身推油➕ 海底捞月➕抓根➕男性私密保养➕手放🐔\nRM168\n/90分钟\n*专业的按摩保健抓根手法，有按摩文凭，其他服务面谈私聊\n（没有下水）.\n\n联系方式：\nWhatsApp：60109098865",
-      "whatsapp": "60109098865",
-      "reviews": [
-        {
-          "author": "heavenam2",
-          "content": "https://wishct.io/forum.php?mod=viewthread&tid=2202162\n勇者报告"
-        },
-        {
-          "author": "Kaiba272",
-          "content": "本帖最后由 Kaiba272 于 2026-4-6 19:47 编辑\n勇者报告\nhttps://wishct.io/forum.php?mod=viewthread&tid=2205338"
-        }
-      ],
-      "lastUpdated": "2026-04-28T09:11:10.366651",
-      "id": 198,
-      "photos": [
-        "/freelancers/198/1.jpg"
-      ]
-    },
-    {
       "forumTid": 2203187,
       "name": "【R&F】中国自",
       "nationalityFlag": "🇨🇳",
@@ -7340,52 +7283,6 @@
         "/freelancers/215/1.jpg",
         "/freelancers/215/2.jpg",
         "/freelancers/215/3.jpg"
-      ]
-    },
-    {
-      "forumTid": 2203111,
-      "name": "【Taman S",
-      "nationalityFlag": "🇨🇳",
-      "nationalityCode": "CN",
-      "nationalityName": "中国",
-      "serviceType": "water",
-      "area": "Taman Sentosa",
-      "areaSlug": "taman-sentosa",
-      "height": "164",
-      "weight": "60",
-      "cup": "",
-      "priceMin": 200,
-      "priceMax": 200,
-      "description": "名字：Nadty\n国籍：泰国\n身材：164cm/60kg\n地点：welcom to my service baby 👄💦\n服务价钱：\n1 shoot play { short time }💦\nRM200\nI am shemale looking good is bottom  and cum 💦\nmake love 🤪 sex\ncan hug\ncan shower for you 🚿\n69 with you and I can fxxk guy\n*have condom and room\nThank you darling for coming to my service .❤️\n\n联系方式：\nWhatsApp：601131937945",
-      "whatsapp": "601131937945",
-      "reviews": [
-        {
-          "author": "Amarr1991",
-          "content": "我之前拜訪過他。價格 100\n實際產品與圖片相差4/10；質地非常粗糙。"
-        },
-        {
-          "author": "nye5469",
-          "content": "Amarr1991 发表于 2026-3-28 20:49\n我之前拜訪過他。價格 100\n實際產品與圖片相差4/10；質地非常粗糙。\n勇者是你"
-        },
-        {
-          "author": "Amarr1991",
-          "content": "nye5469 发表于 2026-3-28 20:54\n勇者是你\n最初，我根本沒打算回顧過去"
-        },
-        {
-          "author": "对对对",
-          "content": "Amarr1991 发表于 2026-3-28 20:57\n最初，我根本沒打算回顧過去\n切了咕咕叫吗？"
-        },
-        {
-          "author": "longcook",
-          "content": "Amarr1991 发表于 2026-3-28 20:49\n我之前拜訪過他。價格 100\n實際產品與圖片相差4/10；質地非常粗糙。\n所谓质地粗糙是？😅😅p 图太多？哈哈"
-        }
-      ],
-      "lastUpdated": "2026-04-29T03:07:17.659751",
-      "id": 216,
-      "photos": [
-        "/freelancers/216/1.jpg",
-        "/freelancers/216/2.jpg",
-        "/freelancers/216/3.jpg"
       ]
     },
     {
@@ -8188,34 +8085,6 @@
       ]
     },
     {
-      "forumTid": 2176922,
-      "name": "【Austin】",
-      "nationalityFlag": "🇨🇳",
-      "nationalityCode": "CN",
-      "nationalityName": "中国",
-      "serviceType": "water",
-      "area": "Austin奥斯汀",
-      "areaSlug": "mount-austin",
-      "height": "158",
-      "weight": "48",
-      "cup": "36C",
-      "priceMin": 78,
-      "priceMax": 78,
-      "description": "名字：妮妮\n国籍：中国\n身材：36C/48KG/158CM\n地点：Austin\n服务价钱：\n普通按摩\nRM78\n/60分钟；\nRM118\n/90分钟\n配套一：\n服务有身体按摩全身推油海底捞月抓根保健男性私密保养\nRM138\n/60分钟\n配套二：\n穿制服，送（耳烛或者艾灸调理，有拔罐，刮痧）任选一个\n以上配套服务有身体按摩全身推油 海底捞月抓根男性私密保养\nRM168\n/90分钟\n*专业的按摩保健抓根手法，有按摩文凭，其他服务面谈私聊\n*没有下水\n*以上资料全部是真实的， 学习过按摩，绝对是物超所值..\n微信：\n13278997716\n\n联系方式：\nWhatsApp：601116252081",
-      "whatsapp": "601116252081",
-      "reviews": [
-        {
-          "author": "jiashiyuan",
-          "content": "妮妮是店里能让我回头好几次的是大美女一个 我是因为她的样貌去找她的说实话个人感觉蛮好看\n约好时间了到店在柜台选了配套1；等她进来房间，开始帮我按摩 按摩很有力度 不随便按 很细心的问你力度可以吗？ 前列腺保健手法也很好 我最重要的环节了 问我 有想要什么 服务吗 我选择150的服务因为我有一些我的要求就不多说了 哈哈哈 但是那个胸型奶头很漂亮真的很美 加上脸蛋 调情😜的声音喘气声让让人入迷\n身高：156\n样貌：9/10符合我的审美\n身材：9/10身材好 刚好手包满\n态度：10/10 健谈\n服务：10/10 按摩不马虎\n价位：看个人喜好"
-        }
-      ],
-      "lastUpdated": "2026-04-29T03:09:21.548646",
-      "id": 241,
-      "photos": [
-        "/freelancers/241/1.jpg"
-      ]
-    },
-    {
       "forumTid": 2134941,
       "name": "【彩虹花园】中国",
       "nationalityFlag": "🇨🇳",
@@ -8455,31 +8324,6 @@
       "id": 249,
       "photos": [
         "/freelancers/249/1.jpg"
-      ]
-    },
-    {
-      "forumTid": 2198091,
-      "name": "【R&F】越南自",
-      "nationalityFlag": "🇨🇳",
-      "nationalityCode": "CN",
-      "nationalityName": "中国",
-      "serviceType": "water",
-      "area": "R&F富力公主湾",
-      "areaSlug": "r-and-f",
-      "height": "167",
-      "weight": "48",
-      "cup": "36C",
-      "priceMin": 280,
-      "priceMax": 280,
-      "description": "名字：Lily\n国籍：中国\n身材：167CM/48KG/36C+\n地点：富力公主湾\n服务价钱：\n配套一：\n陪浴、接吻，水中萧，69式，鸳鸯戏水、指滑、舔蛋、吹箫、调情、胸推 、臀推 、毛扫 、指滑 、过水 、漫游 、海底捞 、吹箫 、可亲胸 、可吸鲍鱼、旋转龙 、摇摆龙 360度吹箫 、抚摸、角色扮演 按摩抚摸、丝袜诱惑..等全套服务➕激情有套爱爱\nRM280\n/60分钟\n\n联系方式：\n",
-      "whatsapp": "",
-      "reviews": [],
-      "lastUpdated": "2026-04-29T03:10:02.041498",
-      "id": 250,
-      "photos": [
-        "/freelancers/250/1.jpg",
-        "/freelancers/250/2.jpg",
-        "/freelancers/250/3.jpg"
       ]
     },
     {
@@ -9275,27 +9119,6 @@
       ]
     },
     {
-      "forumTid": 2207151,
-      "name": "发错区了不好意思",
-      "nationalityFlag": "🇨🇳",
-      "nationalityCode": "CN",
-      "nationalityName": "中国",
-      "serviceType": "other",
-      "area": "新山",
-      "areaSlug": "johor-bahru",
-      "height": "",
-      "weight": "",
-      "cup": "",
-      "priceMin": 0,
-      "priceMax": 0,
-      "description": "名字：发错区了不好意思\n国籍：中国\n身材：\n地点：新山\n服务价钱：\n\n\n联系方式：\n",
-      "whatsapp": "",
-      "reviews": [],
-      "lastUpdated": "2026-04-29T03:12:16.179564",
-      "id": 276,
-      "photos": []
-    },
-    {
       "forumTid": 2208439,
       "name": "【TamanDa",
       "nationalityFlag": "🇨🇳",
@@ -9874,6 +9697,216 @@
         "/freelancers/297/1.jpg",
         "/freelancers/297/2.jpg",
         "/freelancers/297/3.jpg"
+      ]
+    },
+    {
+      "forumTid": 2208837,
+      "name": "【百万镇】中国自",
+      "nationalityFlag": "🇨🇳",
+      "nationalityCode": "CN",
+      "nationalityName": "中国",
+      "serviceType": "water",
+      "area": "百万镇",
+      "areaSlug": "taman-century",
+      "height": "168",
+      "weight": "",
+      "cup": "36E",
+      "priceMin": 238,
+      "priceMax": 238,
+      "description": "名字：笑笑\n国籍：中国\n身材：168cm/36E\n地点：百万镇\n服务价钱：\n配套一：\n正宗中式按摩+精油开背+柔式调情+温感海底捞月打飞机\nRM238\n/60分钟\n配套二：\n陪浴、舌吻、水中萧，鸳鸯戏水、指滑、舔蛋、吹箫、调情、胸推 、臀推 、毛扫 、指滑 、过水 、漫游 、、吹箫 、舔鲍鱼、69、旋转龙 、摇摆龙 360度吹箫 、按摩抚摸、等全套服务➕激情有套爱爱\nRM338\n/60分钟\n\n联系方式：\nWhatsApp：60179924366",
+      "whatsapp": "60179924366",
+      "reviews": [],
+      "lastUpdated": "2026-05-03T15:04:51.547596",
+      "id": 298,
+      "photos": [
+        "/freelancers/298/1.jpg",
+        "/freelancers/298/2.jpg",
+        "/freelancers/298/3.jpg"
+      ]
+    },
+    {
+      "forumTid": 2208832,
+      "name": "【R&F】中国自",
+      "nationalityFlag": "🇨🇳",
+      "nationalityCode": "CN",
+      "nationalityName": "中国",
+      "serviceType": "water",
+      "area": "R&F富力公主湾",
+      "areaSlug": "r-and-f",
+      "height": "163",
+      "weight": "45",
+      "cup": "",
+      "priceMin": 350,
+      "priceMax": 350,
+      "description": "名字：爱宝\n国籍：中国\n身材：163cm 45kg Ｃ 天然\n地点：富力公主湾\n服务价钱：\n配套一：\n舌吻，鸳鸯浴，水中萧，舌尖漫游，窃窃私语，十指弹琴，性感波推，海底捞月， 丝袜+制服诱惑，花样调情，舔咪调情， 无套口交，舔鲍鱼 ，销魂69 ，激情有套爱爱\nRM350\n/60分钟\n配套二：\n包夜\n价钱私聊\n\n联系方式：\nWhatsApp：60163019850",
+      "whatsapp": "60163019850",
+      "reviews": [
+        {
+          "author": "irving67",
+          "content": "爱宝非常的亲切，在做的时候，腰非常的会摇摆，让我很快就高潮了\n大大推荐"
+        }
+      ],
+      "lastUpdated": "2026-05-03T15:04:58.927912",
+      "id": 299,
+      "photos": [
+        "/freelancers/299/1.jpg",
+        "/freelancers/299/2.jpg",
+        "/freelancers/299/3.jpg",
+        "/freelancers/299/4.jpg"
+      ]
+    },
+    {
+      "forumTid": 2208854,
+      "name": "【R&F】中国自",
+      "nationalityFlag": "🇨🇳",
+      "nationalityCode": "CN",
+      "nationalityName": "中国",
+      "serviceType": "water",
+      "area": "R&F富力公主湾",
+      "areaSlug": "r-and-f",
+      "height": "162",
+      "weight": "46",
+      "cup": "34F",
+      "priceMin": 260,
+      "priceMax": 260,
+      "description": "名字：猫猫\n国籍：中国\n身材：162cm/46kg/34F\n地点：富力公主湾\n服务价钱：\n配套一：\n普通按摩，鸳鸯浴，指尖漫游，舌尖漫游，胸推，胸爆，海底捞月，舔蛋蛋，打飞机,无套口交\nRM260\n配套二：\n简单按摩，鸳鸯浴，浴中箫，指尖漫游，舌尖漫游，胸推，海底捞月，舔蛋蛋，轻吻,\n69 互舔，无套口交，丝袜诱惑+有套爱爱，再回首\nRM350\n\n联系方式：",
+      "whatsapp": "",
+      "reviews": [],
+      "lastUpdated": "2026-05-03T15:05:08.489424",
+      "id": 300,
+      "photos": [
+        "/freelancers/300/1.jpg",
+        "/freelancers/300/2.jpg"
+      ]
+    },
+    {
+      "forumTid": 2194800,
+      "name": "【百万镇】中国自",
+      "nationalityFlag": "🇨🇳",
+      "nationalityCode": "CN",
+      "nationalityName": "中国",
+      "serviceType": "massage",
+      "area": "百万镇",
+      "areaSlug": "taman-century",
+      "height": "165",
+      "weight": "",
+      "cup": "34D",
+      "priceMin": 128,
+      "priceMax": 128,
+      "description": "名字：Una\n国籍：中国\n身材：165CM/34D\n地点：百万镇\n服务价钱：\n配套一：\n中式按摩专业采耳+精油spa头疗\nRM128\n/60分钟\n\n联系方式：\nWhatsApp：60146527072",
+      "whatsapp": "60146527072",
+      "reviews": [
+        {
+          "author": "tangguo0218",
+          "content": "https://wishct.io/forum.php?mod= ... &extra=page%3D2"
+        },
+        {
+          "author": "FILETOFISH",
+          "content": "哎呀，可惜了。还没去到就剩下采耳了"
+        },
+        {
+          "author": "西门大雕",
+          "content": "FILETOFISH 发表于 2026-1-17 12:19\n哎呀，可惜了。还没去到就剩下采耳了\n采耳，新山No.1"
+        }
+      ],
+      "lastUpdated": "2026-05-03T15:05:12.596060",
+      "id": 301,
+      "photos": [
+        "/freelancers/301/1.jpg",
+        "/freelancers/301/2.jpg",
+        "/freelancers/301/3.jpg"
+      ]
+    },
+    {
+      "forumTid": 2190014,
+      "name": "【R&F】中国自",
+      "nationalityFlag": "🇨🇳",
+      "nationalityCode": "CN",
+      "nationalityName": "中国",
+      "serviceType": "massage",
+      "area": "R&F富力公主湾",
+      "areaSlug": "r-and-f",
+      "height": "160",
+      "weight": "",
+      "cup": "36C",
+      "priceMin": 200,
+      "priceMax": 200,
+      "description": "名字：小绵羊\n国籍：中国\n身材：160CM/36C\n地点：富力\n服务价钱：\n配套一：\n中国最火柔式激情挑逗按摩，胸滑，胸推，柔蛇绕身！，海底捞，打飞机\nRM200\n/60分钟\n配套二：\n中国最火柔式激情挑逗按摩，胸滑，胸推，柔蛇绕身，海底捞，鼻吸，前列腺穴位保养，正宗泰式抓龙筋，点按会阴穴，打飞机，送采耳、拔罐、精油开背！任选一\nRM280\n/90分钟\n配套三：\n前列腺保养，正宗泰式抓龙筋按摩\nRM150\n/30分钟\n*95后的小姐姐，第一次来新山，会专业的柔式按摩，在中国从事专业理疗按摩2年，在店里一直都是红牌，体验感满满的，绝对回头.\n\n联系方式：\nWhatsApp：60178531328",
+      "whatsapp": "60178531328",
+      "reviews": [
+        {
+          "author": "sliver94",
+          "content": "这个看起来不错 有哪位大哥有报告吗"
+        },
+        {
+          "author": "CubiE_",
+          "content": "Wonderful\n配套二\n样貌  9/10\n身材  8/10\n🐻  8/10\n服务  10/10\n按摩，抓龙筋 都挺好的。"
+        },
+        {
+          "author": "heavenam2",
+          "content": "https://wishct.net/forum.php?mod=viewthread&tid=2190850\n勇者报告"
+        },
+        {
+          "author": "租购爱情",
+          "content": "R&F小绵羊@按摩手法真的震撼到我！ 酸，痛，甜痒，爽。五味俱全！(有图)\n我是一个天选牛马的打工人，每天上班下班就一天，最近就加班加班身体也疲倦很多，之前找过羊羊，今天就顺手牵羊找了小绵羊，见到本人和照片一样，真人就比较美～呵呵，接下来我就说说我真实体验五味俱全的故事情节。\n选择了配套，因为我已经洗澡了就不要再洗，直接就躺着按摩了，按摩手法真的有力，还问我哪里痛我说背痛就帮我按背，按脚痛按得我叫妈妈了她还说叫一声来听我就叫妈妈，她就甜甜的笑了，脚板痛就按脚板真的有对症下药。按摩完痛楚，现在就体验她的中国最火柔式激情挑逗，她除了有鼻吸挑战还有胸滑，胸推，柔蛇绕身贴死我死死的弟弟不硬都不行，还屁股翘高高给我海底捞搞到我痒痒的，之后就做前腺穴位保养还有点按会阴穴，接下来体验正宗泰式抓龙筋得知她是去泰国学的是一个泰国师父教的，按这个有点麻麻酸酸的，按得我越来越硬，她说扛不住就要释放出来了，我说o"
+        },
+        {
+          "author": "租购爱情",
+          "content": "heavenam2 发表于 2025-11-23 13:53\nhttps://wishct.net/forum.php?mod=viewthread&tid=2190850\n勇者报告\n南哥做事好快啊哈哈哈"
+        }
+      ],
+      "lastUpdated": "2026-05-03T15:05:19.967253",
+      "id": 302,
+      "photos": [
+        "/freelancers/302/1.jpg",
+        "/freelancers/302/2.jpg",
+        "/freelancers/302/3.jpg"
+      ]
+    },
+    {
+      "forumTid": 2197922,
+      "name": "【R&F】中国自",
+      "nationalityFlag": "🇨🇳",
+      "nationalityCode": "CN",
+      "nationalityName": "中国",
+      "serviceType": "massage",
+      "area": "R&F富力公主湾",
+      "areaSlug": "r-and-f",
+      "height": "160",
+      "weight": "",
+      "cup": "36C",
+      "priceMin": 200,
+      "priceMax": 200,
+      "description": "名字：挽风\n国籍：中国\n身材：160CM/36C\n地点：富力\n服务价钱：\n配套一：\n中国最火柔式激情挑逗按摩，胸滑，胸推，柔蛇绕身，海底捞，打飞机\nRM200\n/60分钟\n配套二：\n中国最火激情柔式挑逗按摩，胸推，胸滑，柔蛇绕身！海底捞月，鼻吸，前列腺保养，正宗泰式抓龙筋，打飞机，送面部护理，头部肩颈按摩，采耳，精油背部推拿！任选一\nRM280\n/90分钟\n配套三：\n柔式调情搓澡，泡泡花式打飞机\nRM160\n/30分钟\n终极配套：\n双飞模式{皇帝按摩}\nRM400\n/60分钟\n*l95后的小姐姐，第一次来\n新山，会专业的柔式按摩，在中国从事专业理疗按摩4年，在店里一直都是红牌，体验感满满的，绝对回头\n\n联系方式：\nWhatsApp：601112035558",
+      "whatsapp": "601112035558",
+      "reviews": [
+        {
+          "author": "租购爱情",
+          "content": "R&f挽风@把你的心都挽留在她的身边\n约不上小绵羊，小绵羊推介找挽风，昨天约不上，今天就约上了，她是小绵羊的朋友。见到本人和照片一样是皮肤白白的，性格开朗是笑起来甜甜的，一眼就能认出来，这次也不翻车了，去到那房间也是干净的，她就拿水给我喝，然后很体贴的帮我脱衣服，叫我去洗澡，洗澡完过后她就已经变装了换上了性感的吊带衣服，然后就叫我躺着然后就帮我按摩了，聊天方面我们有说有笑没有冷场，按摩力道还不错哪里痛就叫她按哪里，按得整个人都放轻松了，调情方面也很有女友感，她也很好抱软绵绵的棉花糖真的被她挽留在身边了，经过一般的挑逗已经受不了了，她就帮我打出来，打机方面也很有节奏快慢她都掌控到很好，射精射到爽歪歪连床上都有，果然被小太阳捉根过后精量也比较多了。整体体验还不错，聊得开心，射得开心，以后又多一个选择了。"
+        },
+        {
+          "author": "klackcoff",
+          "content": "很好的体验。听说这几天关卡很多人了，怕耽误时间。"
+        },
+        {
+          "author": "天空没有极限",
+          "content": "本帖最后由 天空没有极限 于 2026-3-12 21:01 编辑\n那天我有去试了！体验感真的很好，我平时很难出的她能帮我打出来，谢谢你"
+        },
+        {
+          "author": "tttjjj520",
+          "content": "今天原本要回头找小绵羊，刚好小绵羊有客人所以她推荐她姐妹挽风给我，说她刚好有空，因为上次找小绵羊已经看过挽风，样子就跟照片是差不多一样美，所以我就二话不说直接约了她，今天近距离看挽风，原来近看更心动了 哈哈。来到按摩方面真的没得嫌，就是专业的，接下来调情也真好，情绪价值给满满的，她很认真又有耐心的抚摸我，给人的感觉真的爽，不会好像在赶时间，接下来就到我摸她了，身材是很好的，胸手感真好，试了就懂，最后就互相抱着打飞机，总结是很好的体验 。最后我有烦恼下轮该找小绵羊还是挽风，两个的服务都那么好，然后她说可以双飞，直接解决了我的烦恼，现在就期待下次找他们双飞"
+        },
+        {
+          "author": "李荣浩",
+          "content": "R&f挽风@新技能体验更上一层楼的快感\n之前试过挽风的按摩推拿都很满意，结果发现她又更新了新技能泡泡花式打飞机，马上去初体验！\n1.搓澡～把压力都放松\n2.柔式调情～让我脱胎换骨\n3.泡泡花式打飞机  ～比打飞机的快感更上一层楼\n总结～整体来说是不错的体验～搓澡这个项目都没多少个人做，价格真的非常实惠，把压力放松以外，还是让我体验了不一样的风情。下次可以体验双飞模式\n以下是她的資料\n【R&F】中国自由身打飞机-《挽风》新人\nhttps://wishct.io/forum.php?mod=viewthread&tid=2197922\n(出处: WishCT - 愿望城市 )"
+        }
+      ],
+      "lastUpdated": "2026-05-03T15:05:27.097362",
+      "id": 303,
+      "photos": [
+        "/freelancers/303/1.jpg",
+        "/freelancers/303/2.jpg",
+        "/freelancers/303/3.jpg"
       ]
     }
   ]
