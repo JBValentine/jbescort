@@ -281,7 +281,7 @@ def parse_thread(s: requests.Session, tid: int, title: str) -> dict | None:
         block = re.sub(r'好评\d+', '', block)
         return block.strip()
 
-    _name_clean = _get_field(content, "名字") or name
+    _name_clean = _get_field(content, "名字") or re.sub(r'^[【\[].+?[】\]]\s*', '', name).strip()
     _nat_clean  = _get_field(content, "国籍") or nat_name
     _size_raw   = _get_field(content, "身材", "身高")
     if not _size_raw:
@@ -403,7 +403,8 @@ def build_card_caption(f: dict) -> str:
     # 优先从 description 提取真实名字，与前端逻辑一致
     desc = f.get("description", "")
     m = re.search(r'名字[：:]\s*\n?([^\n]+)', desc)
-    name = m.group(1).strip() if m else f.get("name", "")
+    raw_name = f.get("name", "")
+    name = m.group(1).strip() if m else re.sub(r'^[【\[].+?[】\]]\s*', '', raw_name).strip()
 
     p_min  = f.get("priceMin", 0)
     p_max  = f.get("priceMax", 0)
