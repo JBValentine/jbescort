@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { GoogleAnalytics } from '@next/third-parties/google'
 import './globals.css'
 
 export const metadata: Metadata = {
@@ -106,21 +107,13 @@ export default function RootLayout({
         <link rel="icon" href="/JB.png" />
         <link rel="apple-touch-icon" href="/JB.png" />
         <script
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=G-2296S29VVQ"
-        />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-2296S29VVQ');`,
-          }}
-        />
-        <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
       <body>
         {children}
+        <GoogleAnalytics gaId="G-2296S29VVQ" />
       </body>
     </html>
   )
