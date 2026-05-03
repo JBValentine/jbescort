@@ -105,6 +105,12 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="/JB.png" />
         <link rel="apple-touch-icon" href="/JB.png" />
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-2296S29VVQ" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-2296S29VVQ');`,
+          }}
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
