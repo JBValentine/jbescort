@@ -19,8 +19,9 @@ export function generateMetadata({ params }: Props): Metadata {
   if (!f) return {}
 
   const displayName = f.description?.match(/名字[：:]\s*\n?([^\n]+)/)?.[1]?.trim() || f.name
-  const title = `${displayName} — ${f.area} 自由身 | jbescorts.org`
-  const desc  = `${displayName} ${f.nationalityFlag} ${f.area}${f.height ? ` ${f.height}cm` : ''}${f.cup ? ` ${f.cup}` : ''}${f.priceMin ? ` RM${f.priceMin}-${f.priceMax}` : ''} — JB 自由身资料`
+  const title = `${displayName} — ${f.area} 自由身 Freelance | jbescorts.org`
+  const serviceLabel = f.serviceType === 'water' ? '下水' : f.serviceType === 'massage' ? '按摩' : '自由身'
+  const desc  = `${displayName} ${f.area} ${serviceLabel} — 身高 ${f.height ? `${f.height}cm` : ''}${f.cup ? ` ${f.cup}` : ''}${f.priceMin ? `，RM${f.priceMin}-${f.priceMax}` : ''}。JB freelance Johor Bahru escort。查看真实资料及联系方式。`
 
   return {
     title,
@@ -63,6 +64,7 @@ export default function FreelancerPage({ params }: Props) {
     '@type': 'Person',
     name: f.name,
     url: `https://jbescorts.org/freelancer/${f.id}`,
+    image: f.photos?.[0] ? `https://jbescorts.org${f.photos[0]}` : undefined,
     address: {
       '@type': 'PostalAddress',
       addressLocality: f.area,
@@ -250,7 +252,7 @@ export default function FreelancerPage({ params }: Props) {
             { '@type': 'ListItem', position: 1, name: '首页',     item: 'https://jbescorts.org' },
             { '@type': 'ListItem', position: 2, name: '自由身',   item: 'https://jbescorts.org/freelance' },
             { '@type': 'ListItem', position: 3, name: f.area,     item: `https://jbescorts.org/freelance/${f.areaSlug}` },
-            { '@type': 'ListItem', position: 4, name: f.name,     item: `https://jbescorts.org/freelancer/${f.id}` },
+            { '@type': 'ListItem', position: 4, name: displayName, item: `https://jbescorts.org/freelancer/${f.id}` },
           ],
         }) }}
       />

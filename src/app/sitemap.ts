@@ -6,12 +6,14 @@ import freelancerData from '@/data/freelancers.json'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastUpdated = new Date(freelancerData.lastUpdated)
+  // Use a fixed date for truly static pages to avoid misleading Google
+  const staticDate = new Date('2025-01-01')
 
   // /[area] — 地区伴游平台页
   const areaPages = areas.map((area) => ({
     url: `https://jbescorts.org/${area.slug}`,
-    lastModified: new Date(),
-    changeFrequency: 'weekly' as const,
+    lastModified: staticDate,
+    changeFrequency: 'monthly' as const,
     priority: 0.7,
   }))
 
@@ -26,7 +28,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // /platform/[slug]
   const platformPages = platforms.map((p) => ({
     url: `https://jbescorts.org/platform/${p.slug}`,
-    lastModified: new Date(),
+    lastModified: staticDate,
     changeFrequency: 'monthly' as const,
     priority: 0.6,
   }))
@@ -44,7 +46,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     url: `https://jbescorts.org/freelancer/${f.id}`,
     lastModified: lastUpdated,
     changeFrequency: 'weekly' as const,
-    priority: 0.7,
+    priority: 0.75,
   }))
 
   return [
@@ -62,13 +64,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: 'https://jbescorts.org/platforms',
-      lastModified: new Date(),
+      lastModified: staticDate,
       changeFrequency: 'monthly' as const,
       priority: 0.8,
     },
     {
       url: 'https://jbescorts.org/blog',
-      lastModified: new Date(),
+      lastModified: staticDate,
       changeFrequency: 'weekly' as const,
       priority: 0.7,
     },

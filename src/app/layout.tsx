@@ -1,15 +1,15 @@
-import type { Metadata } from 'next'
+﻿import type { Metadata } from 'next'
 import { GoogleAnalytics } from '@next/third-parties/google'
 import './globals.css'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://jbescorts.org'),
   title: {
-    default: 'JB 自由身 — 新山下水按摩导航 | jbescorts.org',
+    default: 'JB 鑷敱韬?鈥?鏂板北涓嬫按鎸夋懇瀵艰埅 | jbescorts.org',
     template: '%s | jbescorts.org',
   },
-  description: 'jbescorts.org — 新山自由身下水 & 按摩导航，200+ 真实资料每日更新，覆盖全新山主要区域。Johor Bahru freelance escort & massage directory, auto-updated daily.',
-  keywords: ['jb 自由身', 'jb freelance', 'jb escort', 'jb escort girl', '新山自由身', '新山下水', 'johor bahru freelance escort', 'jb massage', 'jalan dhoby johor bahru', '新山伴游'],
+  description: 'jbescorts.org 鈥?鏂板北鑷敱韬笅姘?& 鎸夋懇瀵艰埅锛?00+ 鐪熷疄璧勬枡姣忔棩鏇存柊锛岃鐩栧叏鏂板北涓昏鍖哄煙銆侸ohor Bahru freelance escort & massage directory, auto-updated daily.',
+  keywords: ['jb 鑷敱韬?, 'jb freelance', 'jb escort', 'jb escort girl', '鏂板北鑷敱韬?, '鏂板北涓嬫按', 'johor bahru freelance escort', 'jb massage', 'jalan dhoby johor bahru', '鏂板北浼存父'],
   alternates: {
     canonical: '/',
     languages: {
@@ -23,15 +23,15 @@ export const metadata: Metadata = {
     locale: 'zh_CN',
     url: 'https://jbescorts.org',
     siteName: 'jbescorts.org',
-    title: 'JB 自由身 — 新山下水按摩导航 | jbescorts.org',
-    description: '新山自由身一站式导航，200+ 真实资料每日更新。Johor Bahru freelance escort & massage directory.',
+    title: 'JB 鑷敱韬?鈥?鏂板北涓嬫按鎸夋懇瀵艰埅 | jbescorts.org',
+    description: '鏂板北鑷敱韬竴绔欏紡瀵艰埅锛?00+ 鐪熷疄璧勬枡姣忔棩鏇存柊銆侸ohor Bahru freelance escort & massage directory.',
     images: [{ url: '/JB.png', width: 512, height: 512, alt: 'jbescorts.org logo' }],
   },
   twitter: {
     card: 'summary',
     site: '@jbescortsorg',
-    title: 'JB 自由身 — 新山下水按摩导航',
-    description: '新山自由身下水 & 按摩导航，200+ 真实资料每日更新。Johor Bahru freelance escort & massage directory.',
+    title: 'JB 鑷敱韬?鈥?鏂板北涓嬫按鎸夋懇瀵艰埅',
+    description: '鏂板北鑷敱韬笅姘?& 鎸夋懇瀵艰埅锛?00+ 鐪熷疄璧勬枡姣忔棩鏇存柊銆侸ohor Bahru freelance escort & massage directory.',
     images: ['/JB.png'],
   },
   robots: {
@@ -70,7 +70,7 @@ export default function RootLayout({
         '@type': 'WebPage',
         '@id': 'https://jbescorts.org/#webpage',
         url: 'https://jbescorts.org',
-        name: 'JB Escort Directory �?Johor Bahru Guide',
+        name: 'JB Escort Directory - Johor Bahru Guide',
         isPartOf: { '@id': 'https://jbescorts.org/#website' },
         about: { '@id': 'https://jbescorts.org/#organization' },
         description: 'A curated directory of escort platforms in Johor Bahru, covering the Jalan Dhoby area and beyond.',
@@ -90,8 +90,8 @@ export default function RootLayout({
           { '@type': 'ListItem', position: 7, name: 'JBSam', url: 'https://jbescorts.org/platform/jbsam' },
           { '@type': 'ListItem', position: 8, name: 'JB Escort Xiaojie', url: 'https://jbescorts.org/platform/jb-escort-xiaojie' },
           { '@type': 'ListItem', position: 9, name: 'JB Escort Entertainment', url: 'https://jbescorts.org/platform/jb-escort-entertainment' },
-          { '@type': 'ListItem', position: 10, name: '新山情人网', url: 'https://jbescorts.org/platform/jb-valentine' },
-          { '@type': 'ListItem', position: 11, name: '愿望城市', url: 'https://jbescorts.org/platform/wish-city' },
+          { '@type': 'ListItem', position: 10, name: '鏂板北鎯呬汉缃?, url: 'https://jbescorts.org/platform/jb-valentine' },
+          { '@type': 'ListItem', position: 11, name: '鎰挎湜鍩庡競', url: 'https://jbescorts.org/platform/wish-city' },
           { '@type': 'ListItem', position: 12, name: 'JB Escort Plaboy', url: 'https://jbescorts.org/platform/jb-escort-plaboy' },
           { '@type': 'ListItem', position: 13, name: 'JHB Escort Service', url: 'https://jbescorts.org/platform/jhb-escort-service' },
           { '@type': 'ListItem', position: 14, name: 'JB Escort Call Girl', url: 'https://jbescorts.org/platform/jb-escort-call-girl' },

@@ -17,8 +17,8 @@ export function generateMetadata({ params }: Props): Metadata {
   const area = data.areas?.find((a: any) => a.slug === params.area)
   if (!area) return {}
   return {
-    title: `${area.name} 自由身 — JB Freelance | jbescorts.org`,
-    description: `${area.name} 区域 ${area.count} 条自由身资料，下水、按摩一站查看。`,
+    title: `${area.name} 自由身 Freelance — JB 新山下水按摩 | jbescorts.org`,
+    description: `${area.name} 自由身 ${area.count} 条真实资料，涵盖下水、按摩服务。JB freelance escort ${area.name} Johor Bahru。每日更新，价格透明。`,
     alternates: { canonical: `/freelance/${area.slug}` },
     openGraph: {
       title: `${area.name} 自由身 — JB Freelance`,
@@ -46,7 +46,7 @@ export default function AreaFreelancePage({ params }: Props) {
       {/* Breadcrumb */}
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-2">
         <ol className="flex items-center gap-2 text-sm text-gray-500">
-          <li><Link href="/" className="hover:text-[#0088cc]">Home</Link></li>
+          <li><Link href="/" className="hover:text-[#0088cc]">首页</Link></li>
           <li>/</li>
           <li><Link href="/freelance" className="hover:text-[#0088cc]">自由身</Link></li>
           <li>/</li>
@@ -160,7 +160,7 @@ export default function AreaFreelancePage({ params }: Props) {
           '@context': 'https://schema.org',
           '@type': 'BreadcrumbList',
           itemListElement: [
-            { '@type': 'ListItem', position: 1, name: 'Home',   item: 'https://jbescorts.org' },
+            { '@type': 'ListItem', position: 1, name: '首页', item: 'https://jbescorts.org' },
             { '@type': 'ListItem', position: 2, name: '自由身', item: 'https://jbescorts.org/freelance' },
             { '@type': 'ListItem', position: 3, name: areaInfo.name, item: `https://jbescorts.org/freelance/${areaInfo.slug}` },
           ],
