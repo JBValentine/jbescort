@@ -24,10 +24,10 @@ const SERVICE_LABEL: Record<string, string> = {
   other:   '其他',
 }
 
-// 手动置顶推荐：大眼妹(88)、文文(168)、水水(351)、小甜妹(360)
-const PINNED_IDS = [88, 168, 351, 360]
+// 手动置顶推荐：大眼妹(88)、文文(168)、水水(351)、小甜妹(360)、286、383
+const PINNED_IDS = [88, 168, 351, 360, 286, 383]
 
-function getDailyRecommendations(freelancers: any[], extraCount: number = 2) {
+function getDailyRecommendations(freelancers: any[], extraCount: number = 0) {
   const byId = new Map(freelancers.map((f: any) => [f.id, f]))
 
   // 1. 先取置顶的人（按顺序），跳过没有照片的
