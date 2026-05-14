@@ -24,6 +24,35 @@ const SERVICE_LABEL: Record<string, string> = {
   other:   '其他',
 }
 
+// 手动置顶推荐：大眼妹(88)、文文(168)、水水(351)、小甜妹(360)
+const PINNED_IDS = [88, 168, 351, 360]
+
+function getDailyRecommendations(freelancers: any[], extraCount: number = 2) {
+  const byId = new Map(freelancers.map((f: any) => [f.id, f]))
+
+  // 1. 先取置顶的人（按顺序），跳过没有照片的
+  const pinned = PINNED_IDS
+    .map((id) => byId.get(id))
+    .filter((f): f is any => !!f && f.photos?.length > 0)
+
+  // 2. 每日随机补充（有评价 + 有照片，排除已置顶）
+  const pinnedSet = new Set(PINNED_IDS)
+  const now = new Date()
+  const seed = now.getFullYear() * 10000 + (now.getMonth() + 1) * 100 + now.getDate()
+  const candidates = freelancers.filter(
+    (f: any) => !pinnedSet.has(f.id) && f.reviews?.length > 0 && f.photos?.length > 0
+  )
+  const extras = [...candidates]
+    .sort((a, b) => {
+      const ha = (a.id * seed * 1103515245 + 12345) & 0x7fffffff
+      const hb = (b.id * seed * 1103515245 + 12345) & 0x7fffffff
+      return ha - hb
+    })
+    .slice(0, extraCount)
+
+  return [...pinned, ...extras]
+}
+
 export default function Home() {
   const { freelancers, areas, totalCount, lastUpdated } = freelancerData as any
 
@@ -36,6 +65,14 @@ export default function Home() {
 
   const waterCount   = freelancers.filter((f: any) => f.serviceType === 'water').length
   const massageCount = freelancers.filter((f: any) => f.serviceType === 'massage').length
+
+  const dailyPicks = getDailyRecommendations(freelancers)
+
+  const todayStr = new Date().toLocaleDateString('zh-CN', {
+    timeZone: 'Asia/Kuala_Lumpur',
+    month: 'long',
+    day: 'numeric',
+  })
 
   return (
     <main className="min-h-screen bg-gray-50">
@@ -120,6 +157,27 @@ export default function Home() {
         </div>
       </nav>
 
+      {/* 今日推荐 */}
+      {dailyPicks.length > 0 && (
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-2">
+          <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center gap-2">
+              <span className="text-xl">🌟</span>
+              <h2 className="text-lg font-bold text-gray-900">今日推荐</h2>
+              <span className="bg-gradient-to-r from-amber-400 to-orange-400 text-white text-xs font-bold px-2 py-0.5 rounded-full">
+                {todayStr}
+              </span>
+            </div>
+            <span className="text-xs text-gray-400">每日自动更换</span>
+          </div>
+          <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3">
+            {dailyPicks.map((f: any) => (
+              <FeaturedCard key={f.id} freelancer={f} />
+            ))}
+          </div>
+        </section>
+      )}
+
       {/* 自由身卡片区（按区域） */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-12">
         {byArea.map((area: any) => (
@@ -182,6 +240,70 @@ export default function Home() {
         </p>
       </footer>
     </main>
+  )
+}
+
+function FeaturedCard({ freelancer: f }: { freelancer: any }) {
+  const icon        = SERVICE_ICON[f.serviceType] || '🔮'
+  const label       = SERVICE_LABEL[f.serviceType] || '其他'
+  const photo       = f.photos?.[0]
+  const price       = f.priceMin
+    ? `RM${f.priceMin}${f.priceMax !== f.priceMin ? `-${f.priceMax}` : ''}`
+    : ''
+  const displayName = f.description?.match(/名字[：:]\s*\n?([^\n]+)/)?.[1]?.trim() || f.name
+
+  return (
+    <Link
+      href={`/freelancer/${f.id}`}
+      className="group relative bg-white rounded-xl overflow-hidden hover:shadow-xl hover:-translate-y-0.5 transition-all border-2 border-amber-300 hover:border-amber-400"
+    >
+      {/* 推荐角标 */}
+      <div className="absolute top-0 left-0 z-10 bg-gradient-to-r from-amber-400 to-orange-400 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-br-lg leading-tight">
+        推荐
+      </div>
+
+      {/* Photo */}
+      <div className="relative w-full aspect-[3/4] bg-gray-100 overflow-hidden">
+        {photo ? (
+          <img
+            src={photo}
+            alt={`${f.name} ${f.area}`}
+            className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300"
+            loading="lazy"
+          />
+        ) : (
+          <div className="w-full h-full flex items-center justify-center text-3xl text-gray-300">
+            {f.nationalityFlag}
+          </div>
+        )}
+        {/* Service badge */}
+        <span className="absolute bottom-2 left-2 bg-black/60 text-white text-xs px-1.5 py-0.5 rounded-full backdrop-blur-sm">
+          {icon} {label}
+        </span>
+        {/* Review badge */}
+        {f.reviews?.length > 0 && (
+          <span className="absolute top-2 right-2 bg-yellow-400/90 text-yellow-900 text-xs px-1.5 py-0.5 rounded-full font-semibold">
+            ★ {f.reviews.length}
+          </span>
+        )}
+      </div>
+
+      {/* Info */}
+      <div className="p-2">
+        <div className="flex items-center gap-1 mb-0.5">
+          <span className="text-sm">{f.nationalityFlag}</span>
+          <span className="text-xs font-bold text-gray-900 truncate group-hover:text-amber-600 transition-colors">
+            {displayName}
+          </span>
+        </div>
+        <div className="text-[10px] text-gray-400 truncate">
+          {f.area}
+        </div>
+        {price && (
+          <div className="text-xs font-semibold text-amber-600 mt-0.5">{price}</div>
+        )}
+      </div>
+    </Link>
   )
 }
 
