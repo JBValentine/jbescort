@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-15T03:06:54.534288",
+  "lastUpdated": "2026-05-15T05:16:16.518858",
   "totalCount": 306,
   "areas": [
     {
@@ -10,7 +10,7 @@
     {
       "name": "Austin奥斯汀",
       "slug": "mount-austin",
-      "count": 45
+      "count": 44
     },
     {
       "name": "新山",
@@ -45,7 +45,7 @@
     {
       "name": "Nusa Bestari",
       "slug": "nusa-bestari",
-      "count": 5
+      "count": 6
     },
     {
       "name": "Tebrau地不佬",
@@ -6923,31 +6923,6 @@
       ]
     },
     {
-      "forumTid": 2191525,
-      "name": "【Austin】",
-      "nationalityFlag": "🇨🇳",
-      "nationalityCode": "CN",
-      "nationalityName": "中国",
-      "serviceType": "massage",
-      "area": "Austin奥斯汀",
-      "areaSlug": "mount-austin",
-      "height": "167",
-      "weight": "45",
-      "cup": "36C",
-      "priceMin": 88,
-      "priceMax": 88,
-      "description": "名字：Nancy\n国籍：中国\n身材：167CM/45KG/36C\n地点：Mount Austin\n服务价钱：\n按摩\nRM88\n/60分钟；\nRM118\n/90分钟；\nRM148\n/120分钟；\n本人佛系服务费随缘\n*各位老板好：我叫Nancy，是一位8年 资深专业经络疏通  SPA按摩，前列腺理疗保养 师，本人独特的手法让您体验绝妙的按摩之旅。用我温柔双手，感受中华民族传统按摩的魅力，给你带来全新的放松体验，在此期待您的光临，谢谢🙏.\n\n联系方式：\nWhatsApp：60129297659",
-      "whatsapp": "60129297659",
-      "reviews": [],
-      "lastUpdated": "2026-04-29T03:12:07.949681",
-      "id": 273,
-      "photos": [
-        "/freelancers/273/1.jpg",
-        "/freelancers/273/2.jpg",
-        "/freelancers/273/3.jpg"
-      ]
-    },
-    {
       "forumTid": 2208439,
       "name": "【TamanDa",
       "nationalityFlag": "🇨🇳",
@@ -10074,6 +10049,39 @@
         "/freelancers/386/1.jpg",
         "/freelancers/386/2.jpg",
         "/freelancers/386/3.jpg"
+      ]
+    },
+    {
+      "forumTid": 2188264,
+      "name": "【Nusa Be",
+      "nationalityFlag": "🇨🇳",
+      "nationalityCode": "CN",
+      "nationalityName": "中国",
+      "serviceType": "massage",
+      "area": "Nusa Bestari",
+      "areaSlug": "nusa-bestari",
+      "height": "162",
+      "weight": "51",
+      "cup": "36B",
+      "priceMin": 80,
+      "priceMax": 80,
+      "description": "名字：心心\n国籍：中国\n身材：162CM/51KG/36B\n地点：Nusa Bestari\n服务价钱：\n按摩\nRM80\n/60分钟，\n抓龙根+简单摸\nRM100\n*位大老板好！我是38号技师心心，来自中国的专业按摩技师，目前在马来西亚，新山工作。小妹本人在专业SPA工作过，服务有油压按摩，保养推拿，柔式+前列腺保养（抓龙根），还有采耳项目，期待着您的光临，保证惊喜！保证包一满意！值回票价！.\n\n联系方式：\nWhatsApp：601116232545",
+      "whatsapp": "601116232545",
+      "reviews": [
+        {
+          "author": "Sng@",
+          "content": "benjaminwong 发表于 2026-1-14 11:13\n这个好干\n伤害多少？这个颜值怎样有没有fr"
+        },
+        {
+          "author": "bearxiong",
+          "content": "试过了，颜值可以\n（我喜欢的类型）"
+        }
+      ],
+      "lastUpdated": "2026-05-15T05:16:07.247327",
+      "id": 387,
+      "photos": [
+        "/freelancers/387/1.jpg",
+        "/freelancers/387/2.jpg"
       ]
     }
   ]
