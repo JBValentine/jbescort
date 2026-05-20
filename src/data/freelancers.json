@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-19T03:07:45.999309",
+  "lastUpdated": "2026-05-20T03:07:17.921013",
   "totalCount": 306,
   "areas": [
     {
@@ -10,7 +10,7 @@
     {
       "name": "Austin奥斯汀",
       "slug": "mount-austin",
-      "count": 42
+      "count": 40
     },
     {
       "name": "新山",
@@ -28,14 +28,14 @@
       "count": 19
     },
     {
-      "name": "彩虹花园",
-      "slug": "taman-pelangi",
+      "name": "Danga Bay",
+      "slug": "danga-bay",
       "count": 10
     },
     {
-      "name": "Danga Bay",
-      "slug": "danga-bay",
-      "count": 9
+      "name": "彩虹花园",
+      "slug": "taman-pelangi",
+      "count": 10
     },
     {
       "name": "Taman Daya",
@@ -90,6 +90,11 @@
     {
       "name": "Perling",
       "slug": "perling",
+      "count": 1
+    },
+    {
+      "name": "JB Sentral",
+      "slug": "jb-sentral",
       "count": 1
     }
   ],
@@ -3310,31 +3315,6 @@
       ]
     },
     {
-      "forumTid": 2207165,
-      "name": "【Austin】",
-      "nationalityFlag": "🇨🇳",
-      "nationalityCode": "CN",
-      "nationalityName": "中国",
-      "serviceType": "massage",
-      "area": "Austin奥斯汀",
-      "areaSlug": "mount-austin",
-      "height": "",
-      "weight": "48",
-      "cup": "",
-      "priceMin": 88,
-      "priceMax": 88,
-      "description": "名字：小果\n国籍：越南\n身材：155/48kg/36\n地点：Austin\n服务价钱：\n休闲按摩服务\n价钱：\n一小时按摩\nRM88\n；1.5小时按摩\nRM118\n；2小时按摩R\nM148\n；抓根和简单摸+\nRM100\n\n联系方式：\nWhatsApp：60148196079",
-      "whatsapp": "60148196079",
-      "reviews": [],
-      "lastUpdated": "2026-04-28T09:04:58.235068",
-      "id": 144,
-      "photos": [
-        "/freelancers/144/1.jpg",
-        "/freelancers/144/2.jpg",
-        "/freelancers/144/3.jpg"
-      ]
-    },
-    {
       "forumTid": 2191274,
       "name": "【Johor J",
       "nationalityFlag": "🇨🇳",
@@ -3428,31 +3408,6 @@
         "/freelancers/147/1.jpg",
         "/freelancers/147/2.jpg",
         "/freelancers/147/3.jpg"
-      ]
-    },
-    {
-      "forumTid": 2207091,
-      "name": "【Austin】",
-      "nationalityFlag": "🇨🇳",
-      "nationalityCode": "CN",
-      "nationalityName": "中国",
-      "serviceType": "massage",
-      "area": "Austin奥斯汀",
-      "areaSlug": "mount-austin",
-      "height": "160",
-      "weight": "40",
-      "cup": "34B",
-      "priceMin": 88,
-      "priceMax": 88,
-      "description": "名字：小小\n国籍：中国\n身材：160CM/40KG/34B\n地点：Austin\n服务价钱：\n中式休闲按摩服务\n价钱：\n一小时按摩\nRM88\n；1.5小时按摩\nRM118\n；2小时按摩\nRM158\n；拉根+\nRM100\n\n联系方式：\nWhatsApp：601168269178",
-      "whatsapp": "601168269178",
-      "reviews": [],
-      "lastUpdated": "2026-04-28T09:05:33.203163",
-      "id": 150,
-      "photos": [
-        "/freelancers/150/1.jpg",
-        "/freelancers/150/2.jpg",
-        "/freelancers/150/3.jpg"
       ]
     },
     {
@@ -6932,31 +6887,6 @@
       ]
     },
     {
-      "forumTid": 2208910,
-      "name": "【R&F】中国自",
-      "nationalityFlag": "🇨🇳",
-      "nationalityCode": "CN",
-      "nationalityName": "中国",
-      "serviceType": "water",
-      "area": "R&F富力公主湾",
-      "areaSlug": "r-and-f",
-      "height": "",
-      "weight": "",
-      "cup": "34C",
-      "priceMin": 350,
-      "priceMax": 350,
-      "description": "名字：小童童\n国籍：中国\n身材：34C\n地点：富力公主湾\n服务价钱：\n配套一：\n鸳鸯浴，简单按摩，亲吻，胸推，指滑，调情，舌尖漫游，舔蛋蛋，无🍑口交，有🍑爱💖爱\nRM350\n/60分钟；\nRM500\n/90分钟\n\n联系方式：\nWhatsApp：601136099692",
-      "whatsapp": "601136099692",
-      "reviews": [],
-      "lastUpdated": "2026-05-04T06:29:20.328171",
-      "id": 306,
-      "photos": [
-        "/freelancers/306/1.jpg",
-        "/freelancers/306/2.jpg",
-        "/freelancers/306/3.jpg"
-      ]
-    },
-    {
       "forumTid": 2208928,
       "name": "【百万镇】中国自",
       "nationalityFlag": "🇨🇳",
@@ -9996,6 +9926,111 @@
       "id": 417,
       "photos": [
         "/freelancers/417/1.jpg"
+      ]
+    },
+    {
+      "forumTid": 2179051,
+      "name": "【Dangaba",
+      "nationalityFlag": "🇨🇳",
+      "nationalityCode": "CN",
+      "nationalityName": "中国",
+      "serviceType": "water",
+      "area": "Danga Bay",
+      "areaSlug": "danga-bay",
+      "height": "150",
+      "weight": "",
+      "cup": "",
+      "priceMin": 180,
+      "priceMax": 180,
+      "description": "名字：金海湾佳佳\n国籍：中国\n身材：150CM\n地点：Dangabay\n服务价钱：\n配套一：\n按摩，精油推背，抓根打飞机60分钟160。经济餐，舔咪咪舔蛋蛋，无套口交+有套爱爱\nRM180\n(没有按摩，最多35分钟)\n配套二：\n鸳鸯浴水中萧，按摩+舔咪咪+舔蛋蛋，漫游全身，69式，无套口交有套爱爱，东莞式服务\nRM230\n/60分钟\n配套三：\n鸳鸯浴水中萧，舔咪咪无套口交，有套爱爱+东莞式调情+洗脸祛痘祛粉剌+按摩推拿，刮痧拔罐\nRM330\n/120分钟（如果您全身疼痛疲劳立马一次有效）\n*佳佳具有中医养生+美容师资质.\n\n联系方式：\nWhatsApp：601111639473",
+      "whatsapp": "601111639473",
+      "reviews": [
+        {
+          "author": "drk",
+          "content": "本帖最后由 drk 于 2025-11-4 23:31 编辑\n金海湾佳佳回来了\nhttps://wishct.net/forum.php?mod=viewthread&tid=2182980\n(出处: WishCT - 愿望城市 )"
+        },
+        {
+          "author": "鸡蛋搞",
+          "content": "佳佳的服务真的没得说，洗脸按摩很是专业，口爱一条龙服务让人欲罢不能！服务姐的称号非佳佳莫属"
+        },
+        {
+          "author": "drk",
+          "content": "本帖最后由 drk 于 2025-11-10 18:21 编辑\nJayden6666 发表于 2025-11-10 12:44\n服務怎樣\n服务态度好 专业配合和性价比高 回头必须的！！！"
+        },
+        {
+          "author": "雕嗨佬",
+          "content": "Jayden6666 发表于 2025-11-10 12:44\n服務怎樣\n我是佳佳的常客，不赶时间，好聊天，服务一级棒，不赶时间，环境干净"
+        }
+      ],
+      "lastUpdated": "2026-05-20T03:06:49.225586",
+      "id": 418,
+      "photos": [
+        "/freelancers/418/1.jpg",
+        "/freelancers/418/2.jpg",
+        "/freelancers/418/3.jpg"
+      ]
+    },
+    {
+      "forumTid": 2189569,
+      "name": "【JB sent",
+      "nationalityFlag": "🇨🇳",
+      "nationalityCode": "CN",
+      "nationalityName": "中国",
+      "serviceType": "water",
+      "area": "JB Sentral",
+      "areaSlug": "jb-sentral",
+      "height": "",
+      "weight": "",
+      "cup": "",
+      "priceMin": 200,
+      "priceMax": 200,
+      "description": "名字：(Ladyboy)\n国籍：Thailand\n身材：\n地点：RM200\n服务价钱：\n00\n；\nOutcall\nRM500\n- Sevice get from me top and bottom\n- sex Blowjop Deep thraot\n- licking ass lick body lick nipple\n- 69 cum together sex hot zeed love feeling boyfriend girlfriend\n- cum in my mouth my face\n- special sevice Bdsm glowden shower\n- ⁠sex with oil play oil body to body\n- ⁠party crystal *\n- ⁠cd\nTwitter：\n@giginag628\nIG：\ngigi69yes123\nWeChat：\npimlata1\n\n联系方式：\nWhatsApp：601123802165",
+      "whatsapp": "601123802165",
+      "reviews": [
+        {
+          "author": "hazardquinn",
+          "content": "外观：9/10\n身材：9/10\n胸部:10/10 胸大大\n女友感:10/10\n爱爱：10/10 很骚\n服务：10/10 口爆到我忍不了"
+        },
+        {
+          "author": "xiaonite1111",
+          "content": "本帖最后由 xiaonite1111 于 2025-12-31 22:28 编辑\n服务用心，会完全配合，深喉会让你忍不住"
+        },
+        {
+          "author": "Kpchee",
+          "content": "服务和态度都很好 口也很厉害 样子也基本和照片差不多\n重点是够骚而且屁股够大臀控一定喜欢\n但是nainai有点硬 如果能够接受的话还是值得试一下的"
+        }
+      ],
+      "lastUpdated": "2026-05-20T03:07:00.267837",
+      "id": 419,
+      "photos": [
+        "/freelancers/419/1.jpg",
+        "/freelancers/419/2.jpg",
+        "/freelancers/419/3.jpg"
+      ]
+    },
+    {
+      "forumTid": 2212038,
+      "name": "【R&F】越南自",
+      "nationalityFlag": "🇨🇳",
+      "nationalityCode": "CN",
+      "nationalityName": "中国",
+      "serviceType": "water",
+      "area": "R&F富力公主湾",
+      "areaSlug": "r-and-f",
+      "height": "168",
+      "weight": "49",
+      "cup": "36C",
+      "priceMin": 300,
+      "priceMax": 300,
+      "description": "名字：Vincy\n国籍：中国\n身材：168CM/49KG/36C+（天然）\n地点：富力公主湾\n服务价钱：\n配套一：\n鸳鸯浴，按摩，舌吻，无套口交，射身，69，性感胸推，舔奶头，乳交，有套爱爱\nRM300\n/60分钟\n\n联系方式：",
+      "whatsapp": "",
+      "reviews": [],
+      "lastUpdated": "2026-05-20T03:07:11.192957",
+      "id": 420,
+      "photos": [
+        "/freelancers/420/1.jpg",
+        "/freelancers/420/2.jpg",
+        "/freelancers/420/3.jpg"
       ]
     }
   ]
