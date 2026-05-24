@@ -239,4 +239,18 @@ export const platforms: PlatformData[] = [
     established: '2016',
     girlCount: '200+',
   },
+  {
+    id: 16,
+    slug: 'jbanmo',
+    name: 'JBAnmo',
+    url: 'https://jbanmo.com/',
+    descEn: 'JBAnmo — the official main site for JB escort & massage services, your one-stop premium directory.',
+    descZh: 'JBAnmo — 新山伴游按摩官方主站，一站式优质导航平台。',
+    fullDescEn: 'JBAnmo (jbanmo.com) is the official main platform for Johor Bahru escort and massage services. As the primary directory site, it provides comprehensive listings covering all major JB areas with verified profiles, real photos, and up-to-date contact information. The platform serves as the authoritative hub for both freelance escorts and massage services in JB.',
+    fullDescZh: 'JBAnmo（jbanmo.com）是新山伴游按摩官方主站平台。作为主导航站，提供覆盖新山所有主要区域的完整列表，包含经过验证的真实资料、照片及最新联系方式。平台是新山自由身伴游与按摩服务的权威汇集地。',
+    features: ['Official main site', 'Comprehensive listings', 'Verified profiles', 'Real photos', 'All JB areas'],
+    featuresZh: ['官方主站', '完整列表', '认证资料', '真实照片', '覆盖全新山'],
+    areas: ['All JB areas', 'Mount Austin', 'Bukit Indah', 'JB Town', 'Skudai', 'Permas Jaya'],
+    contactMethods: ['WhatsApp', 'Telegram'],
+  },
 ]

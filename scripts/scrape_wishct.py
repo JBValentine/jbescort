@@ -437,6 +437,7 @@ def build_card_caption(f: dict) -> str:
         f"",
         sep,
         f'🌐 查看详情 jbescorts.org/freelancer/{fid}',
+        f'🏠 主站：jbanmo.com',
         sep,
         f"{tag_area} {tag_svc} {tag_nat}",
     ]

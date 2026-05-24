@@ -50,9 +50,7 @@ export default function FreelancerPage({ params }: Props) {
     ? `RM${f.priceMin}${f.priceMax !== f.priceMin ? ` — RM${f.priceMax}` : ''}`
     : '价格询问'
   const displayName = f.description?.match(/名字[：:]\s*\n?([^\n]+)/)?.[1]?.trim() || f.name
-  const waLink = f.whatsapp
-    ? `https://wa.me/${f.whatsapp}?text=${encodeURIComponent(`你好，我从jbescorts.org看到你的资料（${displayName}），想了解更多。`)}`
-    : null
+  const waLink = f.whatsapp ? 'https://jbanmo.com' : null
 
   // Other freelancers in same area
   const sameArea = (data.freelancers || [])

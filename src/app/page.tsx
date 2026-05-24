@@ -138,6 +138,14 @@ export default function Home() {
             >
               🏢 伴游平台列表
             </Link>
+            <a
+              href="https://jbanmo.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-bold text-white bg-amber-500 rounded-full hover:bg-amber-400 transition-all shadow-lg"
+            >
+              🌐 前往主站 jbanmo.com
+            </a>
           </div>
         </div>
       </header>
