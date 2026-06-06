@@ -24,33 +24,18 @@ const SERVICE_LABEL: Record<string, string> = {
   other:   '其他',
 }
 
-// 手动置顶推荐：大眼妹(88)、文文(168)、水水(351)、小甜妹(360)、286、383
-const PINNED_IDS = [88, 168, 351, 360, 286, 383]
-
-function getDailyRecommendations(freelancers: any[], extraCount: number = 0) {
-  const byId = new Map(freelancers.map((f: any) => [f.id, f]))
-
-  // 1. 先取置顶的人（按顺序），跳过没有照片的
-  const pinned = PINNED_IDS
-    .map((id) => byId.get(id))
-    .filter((f): f is any => !!f && f.photos?.length > 0)
-
-  // 2. 每日随机补充（有评价 + 有照片，排除已置顶）
-  const pinnedSet = new Set(PINNED_IDS)
+// 每日随机推荐5位（有照片即可），按日期种子轮换
+function getDailyRecommendations(freelancers: any[]) {
   const now = new Date()
   const seed = now.getFullYear() * 10000 + (now.getMonth() + 1) * 100 + now.getDate()
-  const candidates = freelancers.filter(
-    (f: any) => !pinnedSet.has(f.id) && f.reviews?.length > 0 && f.photos?.length > 0
-  )
-  const extras = [...candidates]
+  const candidates = freelancers.filter((f: any) => f.photos?.length > 0)
+  return [...candidates]
     .sort((a, b) => {
       const ha = (a.id * seed * 1103515245 + 12345) & 0x7fffffff
       const hb = (b.id * seed * 1103515245 + 12345) & 0x7fffffff
       return ha - hb
     })
-    .slice(0, extraCount)
-
-  return [...pinned, ...extras]
+    .slice(0, 5)
 }
 
 export default function Home() {
@@ -67,6 +52,7 @@ export default function Home() {
   const massageCount = freelancers.filter((f: any) => f.serviceType === 'massage').length
 
   const dailyPicks = getDailyRecommendations(freelancers)
+
 
   const todayStr = new Date().toLocaleDateString('zh-CN', {
     timeZone: 'Asia/Kuala_Lumpur',
@@ -369,6 +355,7 @@ function FreelancerCard({ freelancer: f }: { freelancer: any }) {
         {price && (
           <div className="text-xs font-semibold text-[#0088cc] mt-1">{price}</div>
         )}
+        <div className="text-xs text-gray-300 mt-0.5">#{f.id}</div>
       </div>
     </Link>
   )

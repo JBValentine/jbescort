@@ -219,6 +219,7 @@ function FreelancerCard({ freelancer: f }: { freelancer: any }) {
         {price && (
           <div className="text-xs font-semibold text-[#0088cc] mt-1">{price}</div>
         )}
+        <div className="text-xs text-gray-300 mt-0.5">#{f.id}</div>
       </div>
     </Link>
   )
