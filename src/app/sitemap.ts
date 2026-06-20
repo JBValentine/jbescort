@@ -75,6 +75,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
     },
     {
+      url: 'https://jbescorts.org/jb-escort',
+      lastModified: staticDate,
+      changeFrequency: 'monthly' as const,
+      priority: 0.95,
+    },
+    {
+      url: 'https://jbescorts.org/jb-girl-escort',
+      lastModified: staticDate,
+      changeFrequency: 'monthly' as const,
+      priority: 0.95,
+    },
+    {
+      url: 'https://jbescorts.org/escort-jb',
+      lastModified: staticDate,
+      changeFrequency: 'monthly' as const,
+      priority: 0.95,
+    },
+    {
       url: 'https://jbescorts.org/johor-bahru-escorts',
       lastModified: staticDate,
       changeFrequency: 'monthly' as const,

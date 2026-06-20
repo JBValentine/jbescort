@@ -3,11 +3,11 @@ import Link from 'next/link'
 import freelancerData from '@/data/freelancers.json'
 
 export const metadata: Metadata = {
-  title: 'JB 自由身 — 新山下水按摩导航 | jbescorts.org',
-  description: `新山自由身下水 & 按摩导航 — ${freelancerData.totalCount}+ 真实资料，覆盖 ${freelancerData.areas.length} 个区域。Johor Bahru freelance escort & massage directory. 一站直达，每日自动更新。`,
+  title: 'JB Escort | JB Girl Escort | Escort JB — Johor Bahru Freelance Directory',
+  description: `JB Escort & Johor Bahru Freelance Directory — ${freelancerData.totalCount}+ verified JB escorts, JB girl escort listings across ${freelancerData.areas.length} areas. Escort JB, hotel outcall. No deposit, meet first.`,
   openGraph: {
-    title: 'JB 自由身 — 新山下水按摩导航',
-    description: `新山自由身一站式导航，${freelancerData.totalCount}+ 真实资料，覆盖全新山主要区域。`,
+    title: 'JB Escort | JB Girl Escort | Escort JB — Johor Bahru',
+    description: `JB Escort & Johor Bahru Freelance Directory — ${freelancerData.totalCount}+ verified JB escorts across ${freelancerData.areas.length} areas.`,
     url: 'https://jbescorts.org',
   },
 }
@@ -82,22 +82,22 @@ export default function Home() {
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center">
           <img src="/JB.png" alt="jbescorts.org logo" className="w-16 h-16 md:w-20 md:h-20 rounded-xl shadow-2xl mb-4 border-2 border-white/20" />
           <h1 className="text-3xl md:text-4xl font-extrabold text-white tracking-tight mb-3 drop-shadow-lg">
-            JB 自由身 <span className="text-blue-400">Directory</span>
+            JB Escort <span className="text-blue-400">&amp; 新山自由身 Directory</span>
           </h1>
           <p className="text-sm md:text-base text-gray-200 max-w-2xl mb-2 drop-shadow-md">
-            新山自由身下水 &amp; 按摩导航 — 真实资料，覆盖 {areas.length} 个区域，每日自动更新。
+            Johor Bahru’s verified JB escort &amp; JB girl escort listings — {totalCount}+ active profiles across {areas.length} areas. Escort JB, hotel outcall, meet first pay later.
           </p>
           <p className="text-xs md:text-sm text-gray-400 max-w-2xl mb-5">
-            Johor Bahru freelance escort &amp; massage directory. Verified listings from {areas.length} areas, auto-updated daily.
+            新山自由身下水 &amp; 按摩导航 — 真实资料，覆盖 {areas.length} 个区域，每日自动更新。
           </p>
 
           {/* Stats */}
           <div className="flex flex-wrap justify-center gap-3 mb-6">
             {[
-              { label: '自由身', value: totalCount },
-              { label: '区域',   value: areas.length },
-              { label: '💦 下水', value: waterCount },
-              { label: '💆 按摩', value: massageCount },
+            { label: 'JB Escorts',           value: totalCount },
+              { label: 'JB Areas',             value: areas.length },
+              { label: '💦 Escort JB Listings', value: waterCount },
+              { label: '💦‍♂️ Massage Listings',  value: massageCount },
             ].map((stat) => (
               <div key={stat.label} className="bg-white/10 rounded-xl px-4 py-2 text-center min-w-[70px]">
                 <div className="text-xl font-bold text-white">{stat.value}</div>
@@ -130,7 +130,7 @@ export default function Home() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-bold text-white bg-amber-500 rounded-full hover:bg-amber-400 transition-all shadow-lg"
             >
-              🌐 前往主站 jbanmo.com
+              🌐 JB Escort Directory
             </a>
           </div>
         </div>
@@ -224,13 +224,29 @@ export default function Home() {
 
       {/* Footer */}
       <footer className="bg-gray-900 text-center py-8 px-4">
-        <p className="text-gray-500 text-sm">&copy; 2026 jbescorts.org — JB Freelance Directory 新山自由身导航. All rights reserved.</p>
+        <p className="text-gray-500 text-sm">&copy; 2026 jbescorts.org — JB Escort & Johor Bahru Freelance Directory. All rights reserved.</p>
         <p className="text-gray-600 text-xs mt-2">
           <Link href="/platforms" className="hover:text-gray-400">伴游平台</Link>
           {' · '}
           <Link href="/blog" className="hover:text-gray-400">Blog 博客</Link>
           {' · '}
-          Serving Johor Bahru. For informational purposes only.
+          <Link href="/jb-escort" className="hover:text-gray-400">JB Escort</Link>
+          {' · '}
+          <Link href="/jb-girl-escort" className="hover:text-gray-400">JB Girl Escort</Link>
+          {' · '}
+          <Link href="/escort-jb" className="hover:text-gray-400">Escort JB</Link>
+        </p>
+        <p className="text-gray-700 text-xs mt-3 max-w-2xl mx-auto">
+          jbescorts.org is Johor Bahru’s most complete <strong className="text-gray-600">JB escort</strong> and{' '}
+          <strong className="text-gray-600">escort JB</strong> directory. Browse{' '}
+          <strong className="text-gray-600">JB girl escort</strong> listings,{' '}
+          <strong className="text-gray-600">JB escorts</strong> by area, and verified profiles updated daily.
+          Full directory at{' '}
+          <a href="https://jbanmo.com/" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-gray-400">JB Escort Directory</a>.
+        </p>
+        <p className="text-gray-800 text-[10px] mt-2">
+          JB Escort · Escort JB · JB Girl Escort · JB Escorts · Johor Bahru Escort ·
+          JB Escort Service · Female Escort Johor · Local Escort JB
         </p>
       </footer>
     </main>

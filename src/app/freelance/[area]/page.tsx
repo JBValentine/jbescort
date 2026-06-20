@@ -12,17 +12,28 @@ export function generateStaticParams() {
   return (data.areas || []).map((a: any) => ({ area: a.slug }))
 }
 
+// Special-case SEO titles for high-traffic areas
+const AREA_TITLE_MAP: Record<string, string> = {
+  'r-and-f':      'R&F 富力 JB Escort | JB Girl Escort R&F — jbescorts.org',
+  'mount-austin': 'Austin 奥斯汀 Escort JB | JB Escort Austin — jbescorts.org',
+  'jb-town':      'JB Town Escort | Escort JB CBD — jbescorts.org',
+  'danga-bay':    'Danga Bay Escort JB | JB Girl Escort Danga Bay — jbescorts.org',
+}
+
 export function generateMetadata({ params }: Props): Metadata {
   const data = freelancerData as any
   const area = data.areas?.find((a: any) => a.slug === params.area)
   if (!area) return {}
+  const title =
+    AREA_TITLE_MAP[params.area] ??
+    `${area.name} JB Escort | Escort JB ${area.name} — jbescorts.org`
   return {
-    title: `${area.name} 自由身 Freelance — JB 新山下水按摩 | jbescorts.org`,
-    description: `${area.name} 自由身 ${area.count} 条真实资料，涵盖下水、按摩服务。JB freelance escort ${area.name} Johor Bahru。每日更新，价格透明。`,
+    title,
+    description: `${area.name} JB escort listings — ${area.count} verified escort JB profiles. JB girl escort ${area.name} Johor Bahru. 每日更新，价格透明。`,
     alternates: { canonical: `/freelance/${area.slug}` },
     openGraph: {
-      title: `${area.name} 自由身 — JB Freelance`,
-      description: `${area.name} 区域 ${area.count} 条自由身资料`,
+      title,
+      description: `${area.name} — ${area.count} verified JB escort profiles`,
       url: `https://jbescorts.org/freelance/${area.slug}`,
     },
   }

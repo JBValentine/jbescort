@@ -5,11 +5,11 @@ import './globals.css'
 export const metadata: Metadata = {
   metadataBase: new URL('https://jbescorts.org'),
   title: {
-    default: 'JB 自由身 — 新山下水按摩导航 | jbescorts.org',
+    default: 'JB Escort | JB Girl Escort | Escort JB — Johor Bahru Freelance Directory',
     template: '%s | jbescorts.org',
   },
-  description: 'jbescorts.org — 新山自由身下水 & 按摩导航，200+ 真实资料每日更新，覆盖全新山主要区域。Johor Bahru freelance escort & massage directory, auto-updated daily.',
-  keywords: ['jb 自由身', 'jb freelance', 'jb escort', 'jb escort girl', '新山自由身', '新山下水', 'johor bahru freelance escort', 'jb massage', 'jalan dhoby johor bahru', '新山伴游'],
+  description: 'JB Escort & Johor Bahru Freelance Directory — 285+ verified JB escorts, JB girl escort listings across 17 areas. Escort JB, JB escorts, hotel outcall. No deposit, meet first.',
+  keywords: ['jb escort', 'escort jb', 'jb escorts', 'jb girl escort', 'johor bahru escort', 'jb freelance', 'jb escort directory', '新山自由身', 'johor bahru freelance escort', 'jalan dhoby johor bahru'],
   alternates: {
     canonical: '/',
     languages: {
@@ -23,15 +23,15 @@ export const metadata: Metadata = {
     locale: 'zh_CN',
     url: 'https://jbescorts.org',
     siteName: 'jbescorts.org',
-    title: 'JB 自由身 — 新山下水按摩导航 | jbescorts.org',
-    description: '新山自由身一站式导航，200+ 真实资料每日更新。Johor Bahru freelance escort & massage directory.',
+    title: 'JB Escort | JB Girl Escort | Escort JB — Johor Bahru Freelance Directory',
+    description: 'JB Escort & Johor Bahru Freelance Directory — 285+ verified JB escorts, JB girl escort listings across 17 areas. Escort JB, JB escorts, hotel outcall.',
     images: [{ url: '/JB.png', width: 512, height: 512, alt: 'jbescorts.org logo' }],
   },
   twitter: {
     card: 'summary',
     site: '@jbescortsorg',
-    title: 'JB 自由身 — 新山下水按摩导航',
-    description: '新山自由身下水 & 按摩导航，200+ 真实资料每日更新。Johor Bahru freelance escort & massage directory.',
+    title: 'JB Escort | JB Girl Escort | Escort JB — Johor Bahru',
+    description: 'JB Escort & Johor Bahru Freelance Directory — 285+ verified JB escorts, JB girl escort listings. Escort JB, hotel outcall, meet first.',
     images: ['/JB.png'],
   },
   robots: {
